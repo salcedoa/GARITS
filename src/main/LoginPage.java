@@ -2,6 +2,12 @@ package main;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class LoginPage extends JPanel {
     // creating the frame
@@ -49,6 +55,54 @@ public class LoginPage extends JPanel {
 
         loginPanel.add(passField);
         passField.setBounds(230, 180,200,20);
+
+        // BUTTON FUNCTIONS
+        quitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 //TODO: establish a connection to the database and compare to username and password input
+                try {
+                    // open connection by creating a DriverManager object with database details passed as parameters
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/GARITS_DB?useSSL=false","root","Lancaster6");
+
+                    // retrieve text input for username and password fields
+                    String username = userField.getText();
+                    String password = passField.getText();
+
+                    // creating mySQL query - should return ResultSet object
+                    Statement statement = conn.createStatement();
+                    // username and password are collated with a case-sensitive character set (utf8mb4_bin) for extra security
+                    String sql = "SELECT * FROM users WHERE Username='"+username+"' COLLATE utf8mb4_bin AND Password='"+password+"' COLLATE utf8mb4_bin";
+                    ResultSet resultSet = statement.executeQuery(sql);
+
+                    // if username and password are true then access system
+                    // TODO: CREATE GARTIS object instead
+                    if (resultSet.next()) {
+                        System.out.println("Successful Login!");
+                    } else {
+                        // a popup message is shown if the username or password are incorrect
+                        JOptionPane.showMessageDialog(LoginPage.this, "Username or Password was incorrect");
+                        userField.setText("");
+                        passField.setText("");
+                    }
+
+                    // TODO: keep connection open once the system is accessed
+                    conn.close();
+
+
+                } catch(Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+        });
 
         frame.add(loginPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
