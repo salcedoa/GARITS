@@ -84,9 +84,10 @@ public class LoginPage extends JPanel {
                     ResultSet resultSet = statement.executeQuery(sql);
 
                     // if username and password are true then access system
-                    // TODO: CREATE GARTIS object instead
                     if (resultSet.next()) {
-                        System.out.println("Successful Login!");
+                        String role = resultSet.getNString("AccountType");
+                        frame.dispose();
+                        new GARITS(role, conn);
                     } else {
                         // a popup message is shown if the username or password are incorrect
                         JOptionPane.showMessageDialog(LoginPage.this, "Username or Password was incorrect");
