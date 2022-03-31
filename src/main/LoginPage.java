@@ -67,7 +67,6 @@ public class LoginPage extends JPanel {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 //TODO: establish a connection to the database and compare to username and password input
                 try {
                     // open connection by creating a DriverManager object with database details passed as parameters
                     Class.forName("com.mysql.cj.jdbc.Driver");
@@ -87,7 +86,7 @@ public class LoginPage extends JPanel {
                     if (resultSet.next()) {
                         String role = resultSet.getNString("AccountType");
                         frame.dispose();
-                        new GARITS(role, conn);
+                        new GARITS(role);
                     } else {
                         // a popup message is shown if the username or password are incorrect
                         JOptionPane.showMessageDialog(LoginPage.this, "Username or Password was incorrect");
@@ -95,10 +94,7 @@ public class LoginPage extends JPanel {
                         passField.setText("");
                     }
 
-                    // TODO: keep connection open once the system is accessed
                     conn.close();
-
-
                 } catch(Exception ex) {
                     System.out.println(ex.getMessage());
                 }
