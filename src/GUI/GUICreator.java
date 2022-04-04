@@ -21,6 +21,9 @@ public class GUICreator {
         this.target = target;
     }
 
+    // BUTTONS
+
+    // seen in all role menus
     public JButton createCloseButton(int width) {
         JButton closeButton = new JButton("CLOSE");
 
@@ -42,6 +45,59 @@ public class GUICreator {
 
         return closeButton;
     }
+
+    // used by Franchisee, Receptionist and Foreperson
+    public JButton createTakeInNewJobsButton(int width) {
+        JButton newJobsButton = new JButton("TAKE IN NEW JOBS");
+        target.add(newJobsButton);
+        newJobsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        newJobsButton.setMaximumSize(new Dimension(width,50));
+
+        newJobsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: TAKE IN NEW JOB
+            }
+        });
+
+        return newJobsButton;
+    }
+
+    // used by Franchisee and Receptionist
+    public JButton createCustomerAccountButton(int width) {
+        JButton button = new JButton("CREATE CUSTOMER RECORD");
+        target.add(button);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setMaximumSize(new Dimension(width,50));
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: CREATE CUSTOMER RECORD MENU
+            }
+        });
+
+        return button;
+    }
+
+    // used by Receptionist
+    public JButton createStockControlButton(int width) {
+        JButton stockControlButton = new JButton("STOCK CONTROL");
+        target.add(stockControlButton);
+        stockControlButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        stockControlButton.setMaximumSize(new Dimension(width,50));
+
+        stockControlButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: Stock control control panel shows up
+            }
+        });
+
+        return stockControlButton;
+    }
+
+    // LABELS
 
     public JLabel createMenuTitle(String message, int width) {
         JLabel menuTitle = new JLabel(message);

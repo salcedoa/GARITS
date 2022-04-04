@@ -1,7 +1,6 @@
 package main;
 
-import GUI.AdminMenu;
-import GUI.FranchiseeMenu;
+import GUI.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -49,20 +48,26 @@ public class GARITS {
                 cl.show(containerPanel, "franchisee menu");
                 break;
             case "Foreman":
+                containerPanel.add("foreman menu", new ForepersonMenu());
+                cl.show(containerPanel, "foreman menu");
                 break;
             case "Receptionist":
+                containerPanel.add("receptionist menu", new ReceptionistMenu());
+                cl.show(containerPanel, "receptionist menu");
                 break;
             case "Mechanic":
+                containerPanel.add("mechanic menu", new MechanicMenu());
+                cl.show(containerPanel,"mechanic menu");
         }
     }
 
     public static void main(String[] args) {
         // login page is created when program runs
         // GARITS object is created inside LoginPage upon successful login
-        //new LoginPage();
+        new LoginPage();
 
         // TESTS
-        String role = "Franchisee";
-        new GARITS(role);
+        //String role = "Mechanic";
+        //new GARITS(role);
     }
 }
