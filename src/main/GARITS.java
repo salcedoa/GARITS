@@ -9,8 +9,21 @@ public class GARITS {
     private JFrame frame;
     // the container panel will hold all the different GUI menus and interfaces
     private JPanel containerPanel;
+    public JPanel getContainerPanel() {
+        return containerPanel;
+    }
+
+    private GUICreator builder;
+
+    public GUICreator getBuilder() {
+        return builder;
+    }
+
     // as the interfaces will be switching, card layout is used
     private CardLayout cl = new CardLayout();
+    public CardLayout getCl() {
+        return cl;
+    }
 
     // denotes the role of the user that has logged into GARITS
     private String role;
@@ -25,38 +38,40 @@ public class GARITS {
         containerPanel = new JPanel();
         containerPanel.setLayout(cl);
 
-        showMenu();
+        builder = new GUICreator(this);
+        initialiseGUI(builder);
 
-        frame.setPreferredSize(new Dimension(1000,600));
+        frame.setPreferredSize(new Dimension(1000,700));
         frame.add(containerPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.pack();
         frame.setVisible(true);
     }
 
     // detects the account type logging in and shows the corresponding menu
-    public void showMenu() {
+    public void initialiseGUI(GUICreator builder) {
         switch (role) {
             case "Administrator":
-                containerPanel.add("admin menu", new AdminMenu());
+                containerPanel.add("admin menu", new AdminMenu(this));
                 cl.show(containerPanel, "admin menu");
                 break;
             case "Franchisee":
-                containerPanel.add("franchisee menu", new FranchiseeMenu());
+                containerPanel.add("franchisee menu", new FranchiseeMenu(this));
+                containerPanel.add("customer creation form", new CustomerAccountCreation(this));
                 cl.show(containerPanel, "franchisee menu");
                 break;
             case "Foreman":
-                containerPanel.add("foreman menu", new ForepersonMenu());
+                containerPanel.add("foreman menu", new ForepersonMenu(this));
                 cl.show(containerPanel, "foreman menu");
                 break;
             case "Receptionist":
-                containerPanel.add("receptionist menu", new ReceptionistMenu());
+                containerPanel.add("receptionist menu", new ReceptionistMenu(this));
                 cl.show(containerPanel, "receptionist menu");
                 break;
             case "Mechanic":
-                containerPanel.add("mechanic menu", new MechanicMenu());
+                containerPanel.add("mechanic menu", new MechanicMenu(this));
                 cl.show(containerPanel,"mechanic menu");
         }
     }
@@ -67,7 +82,7 @@ public class GARITS {
         new LoginPage();
 
         // TESTS
-        //String role = "Mechanic";
+        //String role = "Franchisee";
         //new GARITS(role);
     }
 }
