@@ -4,6 +4,7 @@ import main.GARITS;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /***
  *
@@ -16,7 +17,8 @@ public class CustomerAccountCreation extends JPanel{
 
     private JLabel titleLabel = new JLabel("CREATE CUSTOMER ACCOUNT");
 
-    // create the array
+
+
 
     // Text fields
     private JTextField customerName = new JTextField(50);
@@ -28,6 +30,7 @@ public class CustomerAccountCreation extends JPanel{
     private JTextField telephone = new JTextField(20);
     private JTextField mobile = new JTextField(20);
     private JCheckBox payLate = new JCheckBox("Pay Late");
+
 
     // Labels
     private JLabel customerNameLabel = new JLabel("Full Name");
@@ -45,7 +48,15 @@ public class CustomerAccountCreation extends JPanel{
     private JComboBox contactTitle = new JComboBox(titles);
     private JTextField contactName = new JTextField(50);
 
+    // create the array
+    JTextField jTextFieldsArray [] = {customerName,addressLine1,addressLine2,addressLine3,postCode,telephone,mobile,contactName};
+
     // method called clearTextFields (void)
+    public void clearTextFieldsArray(){
+        for(JTextField i :jTextFieldsArray) {
+            i.setText("");
+        }
+    };
 
 
     public CustomerAccountCreation(GARITS garits) {
