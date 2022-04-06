@@ -1,5 +1,7 @@
 package GUI;
 
+import main.GARITS;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,7 +9,7 @@ import java.awt.event.ActionListener;
 
 public class AdminMenu extends JPanel {
 
-    private GUICreator builder = new GUICreator(this);
+    private GUICreator builder;
 
     private static final JButton addUserButton = new JButton("ADD USER");
     private static final JButton removeUserButton = new JButton("REMOVE USER");
@@ -18,12 +20,14 @@ public class AdminMenu extends JPanel {
     private int buttonWidth = 180;
     private int buttonHeight = 50;
 
-    public AdminMenu() {
+    public AdminMenu(GARITS garits) {
+        builder = garits.getBuilder();
+
         // setting up a box layout that aligns all the components vertically
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // initialising components + adding spacing between buttons
-        builder.createMenuTitle("Welcome to the ADMIN Portal!", 310);
+        builder.createMenuTitle("Welcome to the ADMIN Portal!",this, 310);
         this.add(addUserButton);
         this.add(Box.createRigidArea(new Dimension(0, 5)));
         this.add(removeUserButton);
@@ -34,7 +38,7 @@ public class AdminMenu extends JPanel {
         this.add(Box.createRigidArea(new Dimension(0, 5)));
         this.add(restoreDataButton);
         this.add(Box.createRigidArea(new Dimension(0, 20)));
-        builder.createCloseButton(buttonWidth);
+        builder.createCloseButton(this,buttonWidth);
 
         // positioning the components
         addUserButton.setAlignmentX(Component.CENTER_ALIGNMENT);

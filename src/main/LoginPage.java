@@ -67,10 +67,12 @@ public class LoginPage extends JPanel {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String dbPassword = "Lancaster6";
+                String dbAddress = "82.0.184.217:3306";
                 try {
                     // open connection by creating a DriverManager object with database details passed as parameters
                     Class.forName("com.mysql.cj.jdbc.Driver");
-                    Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/GARITS_DB?useSSL=false","root","Lancaster6");
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://"+dbAddress+"/GARITS_DB?useSSL=false","root",dbPassword);
 
                     // retrieve text input for username and password fields
                     String username = userField.getText();
@@ -82,7 +84,7 @@ public class LoginPage extends JPanel {
                     String sql = "SELECT * FROM users WHERE Username='"+username+"' COLLATE utf8mb4_bin AND Password='"+password+"' COLLATE utf8mb4_bin";
                     ResultSet resultSet = statement.executeQuery(sql);
 
-                    // if username and password are true then access system
+                    // if there is at least one result (resultSet.next() = true) then access the system
                     if (resultSet.next()) {
                         String role = resultSet.getNString("AccountType");
                         frame.dispose();

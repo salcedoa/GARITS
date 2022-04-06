@@ -1,12 +1,14 @@
 package GUI;
 
+import main.GARITS;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ReceptionistMenu extends JPanel {
-    private GUICreator builder = new GUICreator(this);
+    private GUICreator builder;
 
     private static final JButton viewJobProgressButton = new JButton("VIEW JOB PROGRESS");
     private static final JButton createInvoiceButton = new JButton("CREATE INVOICE");
@@ -14,23 +16,25 @@ public class ReceptionistMenu extends JPanel {
     private int buttonWidth = 240;
     private int buttonHeight = 50;
 
-    public ReceptionistMenu() {
+    public ReceptionistMenu(GARITS garits) {
+        builder = garits.getBuilder();;
+
         // setting up a box layout that aligns all the components vertically
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         // initialising components + adding spacing between buttons
-        builder.createMenuTitle("Welcome to the RECEPTIONIST Portal!", 400);
-        builder.createTakeInNewJobsButton(buttonWidth);
+        builder.createMenuTitle("Welcome to the RECEPTIONIST Portal!",this, 400);
+        builder.createTakeInNewJobsButton(this, buttonWidth);
         this.add(Box.createRigidArea(new Dimension(0, 5)));
-        builder.createCustomerAccountButton(buttonWidth);
+        builder.createCustomerAccountButton(this, buttonWidth);
         this.add(Box.createRigidArea(new Dimension(0, 5)));
         this.add(viewJobProgressButton);
         this.add(Box.createRigidArea(new Dimension(0, 5)));
         this.add(createInvoiceButton);
         this.add(Box.createRigidArea(new Dimension(0, 5)));
-        builder.createStockControlButton(buttonWidth);
+        builder.createStockControlButton(this, buttonWidth);
         this.add(Box.createRigidArea(new Dimension(0, 20)));
-        builder.createCloseButton(buttonWidth);
+        builder.createCloseButton(this, buttonWidth);
 
         // positioning the components
 

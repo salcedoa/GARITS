@@ -1,5 +1,7 @@
 package GUI;
 
+import main.GARITS;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,16 +17,18 @@ import java.awt.event.ActionListener;
 
 
 public class GUICreator {
+    private JPanel containerPanel;
+    private CardLayout cl;
 
-    private JPanel target;
-    public GUICreator(JPanel target) {
-        this.target = target;
+    public GUICreator(GARITS garits) {
+        containerPanel = garits.getContainerPanel();
+        cl = garits.getCl();
     }
 
     // BUTTONS
 
     // seen in all role menus
-    public JButton createCloseButton(int width) {
+    public JButton createCloseButton(JPanel target, int width) {
         JButton closeButton = new JButton("CLOSE");
 
         target.add(closeButton);
@@ -47,7 +51,7 @@ public class GUICreator {
     }
 
     // used by Franchisee, Receptionist and Foreperson
-    public JButton createTakeInNewJobsButton(int width) {
+    public JButton createTakeInNewJobsButton(JPanel target, int width) {
         JButton newJobsButton = new JButton("TAKE IN NEW JOBS");
         target.add(newJobsButton);
         newJobsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -63,8 +67,41 @@ public class GUICreator {
         return newJobsButton;
     }
 
+    // used in customer record creation menu
+    public JButton createBackButton(JPanel target, int posX, int posY) {
+        JButton backButton = new JButton("BACK");
+        target.add(backButton);
+        backButton.setBackground(Color.BLACK);
+        backButton.setForeground(Color.WHITE);
+        backButton.setOpaque(true);
+        backButton.setBorderPainted(false);
+        backButton.setBounds(posX,posY,100,30);
+        //backButton.setMaximumSize(new Dimension(50,20));
+
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // the first JPanel (menu) is shown
+                cl.previous(containerPanel);
+            }
+        });
+
+        return backButton;
+    }
+
+    public JButton createSaveButton(JPanel target, int posX, int posY) {
+        JButton saveButton = new JButton("SAVE");
+        target.add(saveButton);
+        saveButton.setBackground(Color.BLACK);
+        saveButton.setForeground(Color.WHITE);
+        saveButton.setOpaque(true);
+        saveButton.setBorderPainted(false);
+        saveButton.setBounds(posX,posY,100,30);
+        return saveButton;
+    }
+
     // used by Franchisee and Receptionist
-    public JButton createCustomerAccountButton(int width) {
+    public JButton createCustomerAccountButton(JPanel target, int width) {
         JButton button = new JButton("CREATE CUSTOMER RECORD");
         target.add(button);
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -81,7 +118,7 @@ public class GUICreator {
     }
 
     // used by Receptionist
-    public JButton createStockControlButton(int width) {
+    public JButton createStockControlButton(JPanel target, int width) {
         JButton stockControlButton = new JButton("STOCK CONTROL");
         target.add(stockControlButton);
         stockControlButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -99,7 +136,7 @@ public class GUICreator {
 
     // LABELS
 
-    public JLabel createMenuTitle(String message, int width) {
+    public JLabel createMenuTitle(String message, JPanel target, int width) {
         JLabel menuTitle = new JLabel(message);
         target.add(menuTitle);
         menuTitle.setMaximumSize(new Dimension(width,100));

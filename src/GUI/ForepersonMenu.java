@@ -1,12 +1,14 @@
 package GUI;
 
+import main.GARITS;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ForepersonMenu extends JPanel {
-    private GUICreator builder = new GUICreator(this);
+    private GUICreator builder;
 
     private static final JButton allocateMechanicButton = new JButton("ALLOCATE MECHANIC");
     private static final JButton mechanicMenuButton = new JButton("MECHANIC MENU");
@@ -15,13 +17,15 @@ public class ForepersonMenu extends JPanel {
     private int buttonWidth = 240;
     private int buttonHeight = 50;
 
-    public ForepersonMenu() {
+    public ForepersonMenu(GARITS garits) {
         // setting up a box layout that aligns all the components vertically
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        builder = garits.getBuilder();
+
         // initialising components + adding spacing between buttons
-        builder.createMenuTitle("Welcome to the FOREPERSON Portal!", 400);
-        builder.createTakeInNewJobsButton(buttonWidth);
+        builder.createMenuTitle("Welcome to the FOREPERSON Portal!",this, 400);
+        builder.createTakeInNewJobsButton(this,buttonWidth);
         this.add(Box.createRigidArea(new Dimension(0, 5)));
         this.add(allocateMechanicButton);
         this.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -29,7 +33,7 @@ public class ForepersonMenu extends JPanel {
         this.add(Box.createRigidArea(new Dimension(0, 5)));
         this.add(receptionistMenuButton);
         this.add(Box.createRigidArea(new Dimension(0, 20)));
-        builder.createCloseButton(buttonWidth);
+        builder.createCloseButton(this,buttonWidth);
 
         // positioning the components
 
