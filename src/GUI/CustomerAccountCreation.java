@@ -16,6 +16,8 @@ public class CustomerAccountCreation extends JPanel{
 
     private JLabel titleLabel = new JLabel("CREATE CUSTOMER ACCOUNT");
 
+    // create the array
+
     // Text fields
     private JTextField customerName = new JTextField(50);
     private JTextField addressLine1 = new JTextField(100);
@@ -42,6 +44,9 @@ public class CustomerAccountCreation extends JPanel{
     private String titles[] = {"Mr", "Mrs", "Miss", "Ms"};
     private JComboBox contactTitle = new JComboBox(titles);
     private JTextField contactName = new JTextField(50);
+
+    // method called clearTextFields (void)
+
 
     public CustomerAccountCreation(GARITS garits) {
         setLayout(null);
