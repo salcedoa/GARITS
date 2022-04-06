@@ -72,7 +72,9 @@ public class LoginPage extends JPanel {
                 try {
                     // open connection by creating a DriverManager object with database details passed as parameters
                     Class.forName("com.mysql.cj.jdbc.Driver");
-                    Connection conn = DriverManager.getConnection("jdbc:mysql://"+dbAddress+"/GARITS_DB?useSSL=false","root",dbPassword);
+                    System.out.println("Connecting...");
+                    Connection conn = DriverManager.getConnection("jdbc:mysql://"+dbAddress+"/GARITS_DB?allowPublicKeyRetrieval=true&useSSL=false","root",dbPassword);
+                    System.out.println("Successful!");
 
                     // retrieve text input for username and password fields
                     String username = userField.getText();
