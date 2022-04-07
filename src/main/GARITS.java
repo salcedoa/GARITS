@@ -1,6 +1,7 @@
 package main;
 
 import GUI.*;
+import database.SQLHelper;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,9 +15,14 @@ public class GARITS {
     }
 
     private GUICreator builder;
+    private SQLHelper sqlHelper;
 
     public GUICreator getBuilder() {
         return builder;
+    }
+
+    public SQLHelper getSQLHelper() {
+        return sqlHelper;
     }
 
     // as the interfaces will be switching, card layout is used
@@ -41,11 +47,13 @@ public class GARITS {
         builder = new GUICreator(this);
         initialiseGUI(builder);
 
-        frame.setPreferredSize(new Dimension(1000,700));
+        sqlHelper = new SQLHelper();
+
+        frame.setPreferredSize(new Dimension(1000,600));
         frame.add(containerPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationByPlatform(true);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.pack();
         frame.setVisible(true);
     }
@@ -79,10 +87,10 @@ public class GARITS {
     public static void main(String[] args) {
         // login page is created when program runs
         // GARITS object is created inside LoginPage upon successful login
-        new LoginPage();
+        //new LoginPage();
 
         // TESTS
-        //String role = "Franchisee";
-        //new GARITS(role);
+        String role = "Franchisee";
+        new GARITS(role);
     }
 }

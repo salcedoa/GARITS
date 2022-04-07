@@ -76,15 +76,6 @@ public class GUICreator {
         backButton.setOpaque(true);
         backButton.setBorderPainted(false);
         backButton.setBounds(posX,posY,100,30);
-        //backButton.setMaximumSize(new Dimension(50,20));
-
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // the first JPanel (menu) is shown
-                cl.previous(containerPanel);
-            }
-        });
 
         return backButton;
     }
