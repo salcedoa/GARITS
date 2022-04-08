@@ -1,6 +1,18 @@
 package businesslogic;
 
+import javax.swing.*;
+
 public class CustomerAccount {
+
+    private String customerName,addressLine1,addressLine2,addressLine3,postCode,contact,contactTitle,telephone,mobile;
+
+    private Boolean payLate = false;
+    private Boolean isBusiness = false;
+
+    private JTextField[] jTextFields;
+
+    public CustomerAccount() {;
+    }
 
     public String getCustomerName() {
         return customerName;
@@ -88,15 +100,6 @@ public class CustomerAccount {
 
     public void setBusiness(Boolean business) {
         isBusiness = business;
-    }
-
-    private String customerName,addressLine1,addressLine2,addressLine3,postCode,contact,contactTitle,telephone,mobile;
-
-    private Boolean payLate = false;
-    private Boolean isBusiness = false;
-
-    public CustomerAccount() {
-
     }
 
     // GETTERS AND SETTERS

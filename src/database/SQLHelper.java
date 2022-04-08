@@ -1,7 +1,10 @@
 package database;
 
+import admin.UserAccount;
+import admin.UserAccount;
 import businesslogic.CustomerAccount;
 
+import java.lang.reflect.Type;
 import java.sql.*;
 
 public class SQLHelper {
@@ -10,14 +13,14 @@ public class SQLHelper {
     private String dbPassword = "Lancaster6";
     private String dbURL = "jdbc:mysql://"+dbAddress+"/GARITS_DB?allowPublicKeyRetrieval=true&useSSL=false";
 
-    private ResultSet resultSet;
+    private String[] fieldList;
 
     public SQLHelper() {
 
     }
 
     // Insert a customer account into the database
-    public void insertCustomer(CustomerAccount customerAccount) throws SQLException {
+    public Boolean insertCustomer(CustomerAccount customerAccount) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
@@ -30,29 +33,86 @@ public class SQLHelper {
 
             // creating mySQL query - should return ResultSet object
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setNString(1,customerAccount.getCustomerName());
-            statement.setNString(2,customerAccount.getAddressLine1());
-            statement.setNString(3,customerAccount.getAddressLine2());
-            statement.setNString(4,customerAccount.getAddressLine3());
-            statement.setNString(5, customerAccount.getPostCode());
-            statement.setNString(6, customerAccount.getContact());
-            statement.setNString(7, customerAccount.getContactTitle());
-            statement.setNString(8, customerAccount.getTelephone());
-            statement.setNString(9, customerAccount.getMobile());
+
+            String[] customerFieldList = {customerAccount.getCustomerName(), customerAccount.getAddressLine1(), customerAccount.getAddressLine2(),
+                    customerAccount.getAddressLine3(), customerAccount.getPostCode(), customerAccount.getContact(),
+                    customerAccount.getContactTitle(), customerAccount.getTelephone(),customerAccount.getMobile()};
+
+            // loops through all the fields in Job and changed any empty strings to null
+            for (int i = 0; i != customerFieldList.length; i++) {
+                if (customerFieldList[i].equals("")) {
+                    // i begins from 0 but the parameter indices in the prepared statement begin from 1
+                    statement.setNString(i+1,null);
+                } else {
+                    statement.setNString(i+1,customerFieldList[i]);
+                }
+            }
+
             statement.setBoolean(10, customerAccount.getPayLate());
             statement.setBoolean(11,customerAccount.getBusiness());
-            statement.executeUpdate();
+
+            try {
+                statement.executeUpdate();
+            } catch (SQLIntegrityConstraintViolationException e){
+                return false;
+            }
 
             // close connection
             conn.close();
+            return true;
+
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 
     // Insert vehicle record into the database
 
     // Insert Job into database
+
+    // Insert User into database
+    public Boolean insertUser(UserAccount user) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
+
+            // the query is created
+            String sql = "INSERT INTO users " +
+                    "(AccountHolder,AccountType,Username,Password,HourlyRate) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
+
+            // creating mySQL query - should return ResultSet object
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            String[] userFieldList = {user.getAccountHolder(),user.getAccountType(),user.getUsername(),
+                    user.getPassword()};
+
+            // loops through all the fields in Job and changed any empty strings to null
+            for (int i = 0; i != userFieldList.length; i++) {
+                if (userFieldList[i].equals("")) {
+                    statement.setNString(i+1,null);
+                } else {
+                    statement.setNString(i+1,userFieldList[i]);
+                }
+            }
+            statement.setFloat(6,user.getHourlyRate());
+
+            try {
+                statement.executeUpdate();
+            } catch (SQLIntegrityConstraintViolationException e){
+                return false;
+            }
+
+            // close connection
+            conn.close();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     // Retrieve a customer account from the database (for changes)
 

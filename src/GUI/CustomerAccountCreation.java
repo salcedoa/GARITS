@@ -9,8 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 /***
  *
@@ -161,13 +160,12 @@ public class CustomerAccountCreation extends JPanel{
                 customerAccount.setPayLate(payLate.isSelected());
 
                 // TODO: put a try and catch statement here for SQLException
-                try {
-                    sqlHelper.insertCustomer(customerAccount);
-                } catch (SQLException ex) {
+                if (sqlHelper.insertCustomer(customerAccount)) {
+                    JOptionPane.showMessageDialog(CustomerAccountCreation.this, "Added new customer account to database");
+                    clearTextFields();
+                } else {
                     JOptionPane.showMessageDialog(CustomerAccountCreation.this, "Error: Fields not entered correctly or required fields missing");
                 }
-                clearTextFields();
-                JOptionPane.showMessageDialog(CustomerAccountCreation.this, "Added new customer account to database");
             }
         });
     }
