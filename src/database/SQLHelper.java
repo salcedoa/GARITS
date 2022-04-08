@@ -125,4 +125,32 @@ public class SQLHelper {
     // Retrieve vehicle record from database
 
     // Retrieve a Job from database
+
+    // Back up database data to a directory
+    public Boolean backUpDB(String path) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
+            Statement statement = conn.createStatement();
+            String sql = "BACKUP DATABASE 'GARITS_DB' TO DISK = '"+ path +"'";
+            statement.executeQuery(sql);
+            conn.close();
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
+
+/*    public void backUpDB(String directory) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
+
+
+            conn.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }*/
