@@ -1,6 +1,6 @@
 package admin;
 
-public class User {
+public class UserAccount {
 
     public String getAccountHolder() { return accountHolder; }
 
