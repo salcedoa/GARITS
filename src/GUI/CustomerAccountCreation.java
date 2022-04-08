@@ -147,7 +147,7 @@ public class CustomerAccountCreation extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                customerAccount = new CustomerAccount(jTextFieldsArray);
+                customerAccount = new CustomerAccount();
                 customerAccount.setCustomerName(customerName.getText());
                 customerAccount.setAddressLine1(addressLine1.getText());
                 customerAccount.setAddressLine2(addressLine2.getText());
