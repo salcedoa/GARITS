@@ -87,6 +87,7 @@ public class AdminMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO: Back up data (put data on external file)
+                cl.show(containerPanel,"back up database screen");
             }
         });
 
