@@ -65,8 +65,8 @@ public class UserAccountCreation extends JPanel{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //clearTextFields();
-                cl.previous(containerPanel);
+                clearTextFields();
+                cl.first(containerPanel);
             }
         });
 
@@ -108,11 +108,15 @@ public class UserAccountCreation extends JPanel{
                 userAccount.setUsername(username.getText());
                 userAccount.setPassword(password.getText());
                 userAccount.setAccountType((String) accountTypeMenu.getSelectedItem());
+                String f = hourlyRate.getText();
+                if (!f.equals("")) {
+                    userAccount.setHourlyRate(Float.parseFloat(f));
+                }
                 if( sqlHelper.insertUser(userAccount)) {
-                    JOptionPane.showMessageDialog(UserAccountCreation.this, "Error: Fields not entered correctly or required fields missing");
+                    JOptionPane.showMessageDialog(UserAccountCreation.this, "Added new user account to database");
                     clearTextFields();
                 } else {
-                    JOptionPane.showMessageDialog(UserAccountCreation.this, "Added new user account to database");
+                    JOptionPane.showMessageDialog(UserAccountCreation.this, "Error: Fields not entered correctly or required fields missing");
                 }
 
             }

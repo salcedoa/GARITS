@@ -80,7 +80,7 @@ public class SQLHelper {
             // the query is created
             String sql = "INSERT INTO users " +
                     "(AccountHolder,AccountType,Username,Password,HourlyRate) " +
-                    "VALUES (?, ?, ?, ?, ?, ?)";
+                    "VALUES (?, ?, ?, ?, ?)";
 
             // creating mySQL query - should return ResultSet object
             PreparedStatement statement = conn.prepareStatement(sql);
@@ -96,11 +96,17 @@ public class SQLHelper {
                     statement.setNString(i+1,userFieldList[i]);
                 }
             }
-            statement.setFloat(6,user.getHourlyRate());
+
+            // ensures that empty float is set to null instead of 0.00
+            if (user.getHourlyRate() == 0.00) {
+                statement.setNull(5, Types.FLOAT);
+            } else {
+                statement.setFloat(5, user.getHourlyRate());
+            }
 
             try {
                 statement.executeUpdate();
-            } catch (SQLIntegrityConstraintViolationException e){
+            } catch (SQLException e){
                 return false;
             }
 
