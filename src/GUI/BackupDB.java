@@ -16,6 +16,7 @@ public class BackupDB extends JPanel{
     private CardLayout cl;
 
     private JLabel titleLabel = new JLabel("Backup Database");
+    JFileChooser j = new JFileChooser();
 
 
     public BackupDB(GARITS garits){
@@ -28,6 +29,16 @@ public class BackupDB extends JPanel{
 
         containerPanel = garits.getContainerPanel();
         cl = garits.getCl();
+
+        JButton backupButton = builder.createBackUpButton(this,450,250);
+        backupButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.showSaveDialog(null);
+            }
+        });
+
+
 
         // back button
         JButton backButton = builder.createBackButton(this,700,30);

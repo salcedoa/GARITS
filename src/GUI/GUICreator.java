@@ -80,6 +80,17 @@ public class GUICreator {
         return backButton;
     }
 
+    public JButton createBackUpButton(JPanel target, int posX, int posY){
+        JButton backupButton = new JButton("Backup");
+        target.add(backupButton);
+        backupButton.setBackground(Color.BLACK);
+        backupButton.setForeground(Color.WHITE);
+        backupButton.setOpaque(true);
+        backupButton.setBorderPainted(false);
+        backupButton.setBounds(posX,posY,100,30);
+        return backupButton;
+    }
+
     public JButton createSaveButton(JPanel target, int posX, int posY) {
         JButton saveButton = new JButton("SAVE");
         target.add(saveButton);
