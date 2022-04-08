@@ -64,7 +64,7 @@ public class GARITS {
             case "Administrator":
                 containerPanel.add("admin menu", new AdminMenu(this));
                 containerPanel.add("user account form", new UserAccountCreation(this));
-                containerPanel.add("back up database screen",new BackupDB(this));
+                containerPanel.add("back up database screen",new DBOperations(this));
                 cl.show(containerPanel, "admin menu");
                 break;
             case "Franchisee":

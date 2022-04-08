@@ -80,27 +80,51 @@ public class GUICreator {
         return backButton;
     }
 
-    public JButton createBackUpButton(JPanel target, int posX, int posY){
+    public JButton createChooseDirectoryButton(JPanel target, int posX, int posY){
+        JButton chooseDirectoryButton = new JButton("Choose Directory");
+        target.add(chooseDirectoryButton);
+        chooseDirectoryButton.setBackground(Color.BLACK);
+        chooseDirectoryButton.setForeground(Color.WHITE);
+        chooseDirectoryButton.setOpaque(true);
+        chooseDirectoryButton.setBorderPainted(false);
+        chooseDirectoryButton.setBounds(posX,posY,100,30);
+        return chooseDirectoryButton;
+    }
+
+    public JButton createChooseFileButton(JPanel target, int posX, int posY){
+        JButton chooseFileButton = new JButton("Choose File");
+        target.add(chooseFileButton);
+        chooseFileButton.setBackground(Color.BLACK);
+        chooseFileButton.setForeground(Color.WHITE);
+        chooseFileButton.setOpaque(true);
+        chooseFileButton.setBorderPainted(false);
+        chooseFileButton.setBounds(posX,posY,100,30);
+        return chooseFileButton;
+    }
+
+    public JButton createBackupButton(JPanel target, int posX, int posY){
         JButton backupButton = new JButton("Backup");
         target.add(backupButton);
-        backupButton.setBackground(Color.BLACK);
-        backupButton.setForeground(Color.WHITE);
+        backupButton.setBackground(Color.black);
+        backupButton.setForeground(Color.white);
         backupButton.setOpaque(true);
         backupButton.setBorderPainted(false);
         backupButton.setBounds(posX,posY,100,30);
         return backupButton;
     }
 
-    public JButton createSaveButton(JPanel target, int posX, int posY) {
-        JButton saveButton = new JButton("SAVE");
-        target.add(saveButton);
-        saveButton.setBackground(Color.BLACK);
-        saveButton.setForeground(Color.WHITE);
-        saveButton.setOpaque(true);
-        saveButton.setBorderPainted(false);
-        saveButton.setBounds(posX,posY,100,30);
-        return saveButton;
+    public JButton createRestoreButton(JPanel target, int posX, int posY){
+        JButton restoreButton = new JButton("Restore");
+        target.add(restoreButton);
+        restoreButton.setBackground(Color.black);
+        restoreButton.setForeground(Color.white);
+        restoreButton.setOpaque(true);
+        restoreButton.setBorderPainted(false);
+        restoreButton.setBounds(posX,posY,100,30);
+        return restoreButton;
     }
+
+
 
     // used by Franchisee and Receptionist
     public JButton createCustomerAccountButton(JPanel target, int width) {
@@ -145,5 +169,18 @@ public class GUICreator {
         menuTitle.setFont(new Font("Verdana", Font.BOLD, 18));
         menuTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         return menuTitle;
+    }
+
+
+
+    public JButton createSaveButton(JPanel target, int posX, int posY) {
+        JButton saveButton = new JButton("SAVE");
+        target.add(saveButton);
+        saveButton.setBackground(Color.BLACK);
+        saveButton.setForeground(Color.WHITE);
+        saveButton.setOpaque(true);
+        saveButton.setBorderPainted(false);
+        saveButton.setBounds(posX,posY,100,30);
+        return saveButton;
     }
 }

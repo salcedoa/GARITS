@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class BackupDB extends JPanel{
+public class DBOperations extends JPanel{
     private GUICreator builder;
     private GARITS garits;
     private JPanel containerPanel;
@@ -19,7 +19,7 @@ public class BackupDB extends JPanel{
     JFileChooser j = new JFileChooser();
 
 
-    public BackupDB(GARITS garits){
+    public DBOperations(GARITS garits){
         setLayout(null);
         this.builder = garits.getBuilder();
 
@@ -30,11 +30,19 @@ public class BackupDB extends JPanel{
         containerPanel = garits.getContainerPanel();
         cl = garits.getCl();
 
-        JButton backupButton = builder.createBackUpButton(this,450,250);
+        JButton backupButton = builder.createChooseDirectoryButton(this,450,250);
         backupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 j.showSaveDialog(null);
+            }
+        });
+
+        JButton restoreButton = builder.createChooseFileButton(this, 450, 300);
+        restoreButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                j.showOpenDialog(null);
             }
         });
 
