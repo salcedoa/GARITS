@@ -63,6 +63,7 @@ public class GARITS {
         switch (role) {
             case "Administrator":
                 containerPanel.add("admin menu", new AdminMenu(this));
+                containerPanel.add("user account form", new UserAccountCreation(this));
                 cl.show(containerPanel, "admin menu");
                 break;
             case "Franchisee":
@@ -90,7 +91,7 @@ public class GARITS {
         //new LoginPage();
 
         // TESTS
-        String role = "Franchisee";
+        String role = "Administrator";
         new GARITS(role);
     }
 }

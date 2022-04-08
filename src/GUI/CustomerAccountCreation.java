@@ -146,7 +146,8 @@ public class CustomerAccountCreation extends JPanel{
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                customerAccount = new CustomerAccount();
+
+                customerAccount = new CustomerAccount(jTextFieldsArray);
                 customerAccount.setCustomerName(customerName.getText());
                 customerAccount.setAddressLine1(addressLine1.getText());
                 customerAccount.setAddressLine2(addressLine2.getText());
@@ -166,6 +167,7 @@ public class CustomerAccountCreation extends JPanel{
                     JOptionPane.showMessageDialog(CustomerAccountCreation.this, "Error: Fields not entered correctly or required fields missing");
                 }
                 clearTextFields();
+                JOptionPane.showMessageDialog(CustomerAccountCreation.this, "Added new customer account to database");
             }
         });
     }

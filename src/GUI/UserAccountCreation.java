@@ -34,7 +34,7 @@ public class UserAccountCreation extends JPanel{
     // TODO: create array to clear text fields and clearTextField
 
     public UserAccountCreation(GARITS garits) {
-        this.garits = garits;
+        this.builder = garits.getBuilder();
 
         containerPanel = garits.getContainerPanel();
         cl = garits.getCl();

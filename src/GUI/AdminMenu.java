@@ -8,7 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AdminMenu extends JPanel {
-
+    private JPanel containerPanel;
+    private CardLayout cl;
     private GUICreator builder;
 
     private static final JButton addUserButton = new JButton("ADD USER");
@@ -21,6 +22,9 @@ public class AdminMenu extends JPanel {
     private int buttonHeight = 50;
 
     public AdminMenu(GARITS garits) {
+        // setting the controller class as a local variable
+        containerPanel = garits.getContainerPanel();
+        cl = garits.getCl();
         builder = garits.getBuilder();
 
         // setting up a box layout that aligns all the components vertically
@@ -61,6 +65,7 @@ public class AdminMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO: Add new user
+                cl.show(containerPanel,"user account form");
             }
         });
 
