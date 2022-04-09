@@ -24,29 +24,30 @@ public class DBOperations extends JPanel{
         this.builder = garits.getBuilder();
 
         add(titleLabel);
-        titleLabel.setBounds(350,50,400,50);
+        titleLabel.setBounds(410,50,200,50);
         titleLabel.setFont(new Font("Verdana", Font.BOLD, 18));
 
         containerPanel = garits.getContainerPanel();
         cl = garits.getCl();
 
-        JButton backupButton = builder.createChooseDirectoryButton(this,450,250);
+        j.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
+        JButton backupButton = builder.createChooseDirectoryButton(this,400,250);
         backupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                j.showSaveDialog(null);
+                j.showSaveDialog(DBOperations.this);
             }
         });
 
-        JButton restoreButton = builder.createChooseFileButton(this, 450, 300);
+        j.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        JButton restoreButton = builder.createChooseFileButton(this, 400, 300);
         restoreButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                j.showOpenDialog(null);
+                j.showOpenDialog(DBOperations.this);
             }
         });
-
-
 
         // back button
         JButton backButton = builder.createBackButton(this,700,30);
