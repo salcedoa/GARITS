@@ -70,6 +70,7 @@ public class GARITS {
             case "Franchisee":
                 containerPanel.add("franchisee menu", new FranchiseeMenu(this));
                 containerPanel.add("customer creation form", new CustomerAccountCreation(this));
+                containerPanel.add("create new job",new JobSheet(this));
                 cl.show(containerPanel, "franchisee menu");
                 break;
             case "Foreman":
@@ -78,6 +79,7 @@ public class GARITS {
                 break;
             case "Receptionist":
                 containerPanel.add("receptionist menu", new ReceptionistMenu(this));
+                containerPanel.add("create new job",new JobSheet(this));
                 cl.show(containerPanel, "receptionist menu");
                 break;
             case "Mechanic":
@@ -92,7 +94,7 @@ public class GARITS {
         //new LoginPage();
 
         // TESTS
-        String role = "Administrator";
+        String role = "Franchisee";
         new GARITS(role);
     }
 }

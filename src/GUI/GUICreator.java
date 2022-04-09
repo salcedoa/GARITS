@@ -61,6 +61,7 @@ public class GUICreator {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO: TAKE IN NEW JOB
+                cl.show(containerPanel,"create new job");
             }
         });
 
