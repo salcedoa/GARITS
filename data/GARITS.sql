@@ -39,12 +39,12 @@ CREATE TABLE jobs
 (
 JobID int(30) NOT NULL AUTO_INCREMENT primary key,
 CustomerName varchar(255),
-VehicleID int(10) NOT NULL,
+NumberPlate varchar (10) NOT NULL,
 Make varchar(30),
 Model varchar(30) NOT NULL,
 CustomerTelephone varchar(30),
 DescriptionRequiredWork varchar(400),
-FOREIGN KEY (VehicleID) REFERENCES vehicles(NumberPlate)
+FOREIGN KEY (NumberPlate) REFERENCES vehicles(NumberPlate)
 );
 
 CREATE TABLE invoices(
@@ -89,8 +89,7 @@ PayLate boolean NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE vehicles (
-VehicleID int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-NumberPlate varchar(10) NOT NULL,
+NumberPlate varchar(10) NOT NULL PRIMARY KEY,
 Colour varchar(10) NOT NULL,
 LastMoT date,
 Make varchar(30),
