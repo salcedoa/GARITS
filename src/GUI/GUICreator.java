@@ -87,7 +87,7 @@ public class GUICreator {
         chooseDirectoryButton.setForeground(Color.WHITE);
         chooseDirectoryButton.setOpaque(true);
         chooseDirectoryButton.setBorderPainted(false);
-        chooseDirectoryButton.setBounds(posX,posY,100,30);
+        chooseDirectoryButton.setBounds(posX,posY,200,40);
         return chooseDirectoryButton;
     }
 
@@ -98,7 +98,7 @@ public class GUICreator {
         chooseFileButton.setForeground(Color.WHITE);
         chooseFileButton.setOpaque(true);
         chooseFileButton.setBorderPainted(false);
-        chooseFileButton.setBounds(posX,posY,100,30);
+        chooseFileButton.setBounds(posX,posY,200,40);
         return chooseFileButton;
     }
 

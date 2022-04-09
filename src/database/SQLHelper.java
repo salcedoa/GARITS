@@ -141,6 +141,12 @@ public class SQLHelper {
             return false;
         }
     }
+
+    // Restore database from .bak file
+    public Boolean restoreDB(String filePath) {
+        return false;
+    }
+
 }
 
 /*    public void backUpDB(String directory) {

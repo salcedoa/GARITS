@@ -57,7 +57,7 @@ public class UserAccountCreation extends JPanel{
         cl = garits.getCl();
 
         add(titleLabel);
-        titleLabel.setBounds(350, 50, 400, 50);
+        titleLabel.setBounds(380, 50, 400, 50);
         titleLabel.setFont(new Font("Verdana", Font.BOLD, 18));
 
         // back button
@@ -70,7 +70,7 @@ public class UserAccountCreation extends JPanel{
             }
         });
 
-        int xPos = 300;
+        int xPos = 380;
 
         add(accountHolderLabel);
         accountHolderLabel.setBounds(xPos,125,100,20);
@@ -98,7 +98,7 @@ public class UserAccountCreation extends JPanel{
         hourlyRate.setBounds(xPos,325,250,20);
 
 
-        JButton saveButton = builder.createSaveButton(this,450,480);
+        JButton saveButton = builder.createSaveButton(this,450,420);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -109,10 +109,10 @@ public class UserAccountCreation extends JPanel{
                 userAccount.setPassword(password.getText());
                 userAccount.setAccountType((String) accountTypeMenu.getSelectedItem());
                 if( sqlHelper.insertUser(userAccount)) {
-                    JOptionPane.showMessageDialog(UserAccountCreation.this, "Error: Fields not entered correctly or required fields missing");
+                    JOptionPane.showMessageDialog(UserAccountCreation.this, "Added new user account to database");
                     clearTextFields();
                 } else {
-                    JOptionPane.showMessageDialog(UserAccountCreation.this, "Added new user account to database");
+                    JOptionPane.showMessageDialog(UserAccountCreation.this, "Error: Fields not entered correctly or required fields missing");
                 }
 
             }
