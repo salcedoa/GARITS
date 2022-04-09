@@ -43,7 +43,7 @@ public class JobSheet extends JPanel {
         for (JTextField i : jTextFieldsArray) {
             i.setText("");
             System.out.println(jTextAreaString);
-            jTextAreaString = "";
+            notes.setText("");
         }
     };
     public JobSheet(GARITS garits){
