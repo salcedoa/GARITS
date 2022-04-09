@@ -25,7 +25,7 @@ public class JobSheet extends JPanel {
     private JTextField make = new JTextField(50);
     private JTextField model = new JTextField(50);
     private JTextField telephone = new JTextField(20);
-    private JTextArea notes = new JTextArea(50,50);
+    private JTextArea notes = new JTextArea(25,25);
 
     private JLabel customerNameLabel = new JLabel("Full name");
     private JLabel numberPlateLabel = new JLabel("Number Plate");
@@ -42,7 +42,6 @@ public class JobSheet extends JPanel {
     public void clearTextFields() {
         for (JTextField i : jTextFieldsArray) {
             i.setText("");
-            System.out.println(jTextAreaString);
             notes.setText("");
         }
     };
@@ -79,24 +78,24 @@ public class JobSheet extends JPanel {
         numberPlate.setBounds(xPos,190,200,20);
 
         add(makeLabel);
-        makeLabel.setBounds(xPos,215,80,20);
+        makeLabel.setBounds(xPos+200,170,80,20);
         add(make);
-        make.setBounds(xPos,235,200,20);
+        make.setBounds(xPos+200,190,200,20);
 
         add(modelLabel);
-        modelLabel.setBounds(xPos,260,80,20);
+        modelLabel.setBounds(xPos,215,80,20);
         add(model);
-        model.setBounds(xPos,280,200,20);
+        model.setBounds(xPos,235,200,20);
 
         add(telephoneLabel);
-        telephoneLabel.setBounds(xPos,305,80,20);
+        telephoneLabel.setBounds(xPos+200,215,80,20);
         add(telephone);
-        telephone.setBounds(xPos,325,200,20);
+        telephone.setBounds(xPos+200,235,200,20);
 
         add(notesLabel);
-        notesLabel.setBounds(xPos,350,270,20);
+        notesLabel.setBounds(xPos,260,270,20);
         add(notes);
-        notes.setBounds(xPos,370,300,150);
+        notes.setBounds(xPos,280,400,200);
 
         JButton saveButton = builder.createSaveButton(this,450,530);
         saveButton.addActionListener(new ActionListener() {
