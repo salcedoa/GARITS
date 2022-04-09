@@ -98,7 +98,7 @@ public class JobSheet extends JPanel {
         add(notes);
         notes.setBounds(xPos,370,300,150);
 
-        JButton saveButton = builder.createSaveButton(this,430,500);
+        JButton saveButton = builder.createSaveButton(this,450,530);
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
