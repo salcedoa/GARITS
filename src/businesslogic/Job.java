@@ -6,7 +6,7 @@ public class Job {
 
     public String getCustomerName() { return customerName; }
 
-    public String getVehicleID() {return numberPlate; }
+    public String getNumberPlate() {return numberPlate; }
 
     public String getMake() { return make; }
 
