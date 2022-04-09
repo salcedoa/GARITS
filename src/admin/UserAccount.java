@@ -2,6 +2,8 @@ package admin;
 
 public class UserAccount {
 
+    public int getAccountID() { return accountID; };
+
     public String getAccountHolder() { return accountHolder; }
 
     public String getAccountType() { return accountType; }
@@ -11,6 +13,8 @@ public class UserAccount {
     public String getPassword() { return password; }
 
     public float getHourlyRate() { return hourlyRate; }
+
+    public void setAccountID(int accountID) { this.accountID = accountID; }
 
     public void setAccountHolder(String accountHolder) { this.accountHolder = accountHolder; }
 
@@ -24,4 +28,5 @@ public class UserAccount {
 
     private String accountHolder,accountType,username,password;
     private float hourlyRate;
+    private int accountID;
 }

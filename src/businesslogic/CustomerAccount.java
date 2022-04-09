@@ -5,6 +5,7 @@ import javax.swing.*;
 public class CustomerAccount {
 
     private String customerName,addressLine1,addressLine2,addressLine3,postCode,contact,contactTitle,telephone,mobile;
+    private int customerID;
 
     private Boolean payLate = false;
     private Boolean isBusiness = false;
@@ -13,6 +14,8 @@ public class CustomerAccount {
 
     public CustomerAccount() {;
     }
+
+    public int getCustomerID() { return customerID; }
 
     public String getCustomerName() {
         return customerName;
@@ -57,6 +60,8 @@ public class CustomerAccount {
     public Boolean getBusiness() {
         return isBusiness;
     }
+
+    public void setCustomerID(int customerID) { this.customerID = customerID; }
 
     public void setCustomerName(String customerName) {
         this.customerName = customerName;

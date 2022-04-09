@@ -2,18 +2,18 @@ package database;
 
 import admin.UserAccount;
 import admin.UserAccount;
-import businesslogic.CustomerAccount;
+import businesslogic.*;
 
 import java.lang.reflect.Type;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQLHelper {
     // usually 82.0.184.217:3306
     private String dbAddress = "localhost:3306";
     private String dbPassword = "Lancaster6";
     private String dbURL = "jdbc:mysql://"+dbAddress+"/GARITS_DB?allowPublicKeyRetrieval=true&useSSL=false";
-
-    private String[] fieldList;
 
     public SQLHelper() {
 
@@ -70,6 +70,37 @@ public class SQLHelper {
     // Insert vehicle record into the database
 
     // Insert Job into database
+    public boolean insertJob(Job job) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(dbURL, "root", dbPassword);
+
+            // the query is created
+            String sql = "INSERT INTO jobs " +
+                    "(CustomerName, VehicleID, Make," +
+                    "Model,CustomerTelephone,DescriptionRequiredWork) " +
+                    "VALUES (?, ?, ?, ?, ?, ?) ";
+
+            PreparedStatement statement = conn.prepareStatement(sql);
+            String jobFieldList [] = {job.getCustomerName(), job.getVehicleID(), job.getMake(),
+                                        job.getModel(), job.getTelephone(),job.getNotes()};
+
+            for (int i = 0; i != jobFieldList.length; i++) {
+                if (jobFieldList[i].equals("")) {
+                    // i begins from 0 but the parameter indices in the prepared statement begin from 1
+                    statement.setNString(i+1,null);
+                } else {
+                    statement.setNString(i+1,jobFieldList[i]);
+                }
+            }
+
+            conn.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     // Insert User into database
     public Boolean insertUser(UserAccount user) {
@@ -110,6 +141,13 @@ public class SQLHelper {
                 return false;
             }
 
+            // get the user ID
+            Statement statement2 = conn.createStatement();
+            // chooses last record
+            sql = "SELECT * FROM users ORDER BY AccountID DESC LIMIT 1;";
+            ResultSet rs = statement2.executeQuery(sql);
+            user.setAccountID(rs.getInt("CustomerID"));
+
             // close connection
             conn.close();
             return true;
@@ -121,6 +159,23 @@ public class SQLHelper {
     }
 
     // Retrieve a customer account from the database (for changes)
+    public boolean retrieveCustomerAccount(CustomerAccount customerAccount) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
+            Statement statement = conn.createStatement();
+            String sql = "SELECT * FROM customerAccounts WHERE "+customerAccount.getCustomerID();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            //
+
+            conn.close();
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    };
 
     // Retrieve vehicle record from database
 
@@ -149,14 +204,16 @@ public class SQLHelper {
 
 }
 
-/*    public void backUpDB(String directory) {
+/*    public boolean backUpDB(String directory) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
 
 
             conn.close();
+            return true
         } catch(Exception e) {
             e.printStackTrace();
+            return false
         }
     }*/
