@@ -82,7 +82,7 @@ public class SQLHelper {
                     "VALUES (?, ?, ?, ?, ?, ?) ";
 
             PreparedStatement statement = conn.prepareStatement(sql);
-            String jobFieldList [] = {job.getCustomerName(), job.getVehicleID(), job.getMake(),
+            String jobFieldList [] = {job.getCustomerName(), job.getNumberPlate(), job.getMake(),
                                         job.getModel(), job.getTelephone(),job.getNotes()};
 
             for (int i = 0; i != jobFieldList.length; i++) {
