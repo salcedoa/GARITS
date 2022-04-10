@@ -4,6 +4,7 @@ import admin.UserAccount;
 import admin.UserAccount;
 import businesslogic.*;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
@@ -77,21 +78,29 @@ public class SQLHelper {
 
             // the query is created
             String sql = "INSERT INTO jobs " +
-                    "(CustomerName, VehicleID, Make," +
+                    "(CustomerName, NumberPlate, Make," +
                     "Model,CustomerTelephone,DescriptionRequiredWork) " +
                     "VALUES (?, ?, ?, ?, ?, ?) ";
 
             PreparedStatement statement = conn.prepareStatement(sql);
-            String jobFieldList [] = {job.getCustomerName(), job.getNumberPlate(), job.getMake(),
+            String[] jobFieldList = {job.getCustomerName(), job.getNumberPlate(), job.getMake(),
                                         job.getModel(), job.getTelephone(),job.getNotes()};
 
             for (int i = 0; i != jobFieldList.length; i++) {
                 if (jobFieldList[i].equals("")) {
                     // i begins from 0 but the parameter indices in the prepared statement begin from 1
                     statement.setNString(i+1,null);
+                    System.out.println("detected null value: "+jobFieldList[i]);
                 } else {
                     statement.setNString(i+1,jobFieldList[i]);
+                    System.out.println("detected value: "+jobFieldList[i]);
                 }
+            }
+
+            try {
+                statement.executeUpdate();
+            } catch (SQLIntegrityConstraintViolationException e){
+                return false;
             }
 
             conn.close();
@@ -158,23 +167,37 @@ public class SQLHelper {
         }
     }
 
-    // Retrieve a customer account from the database (for changes)
-    public boolean retrieveCustomerAccount(CustomerAccount customerAccount) {
+    // Retrieve a customer accounts from the database (for display)
+    public ArrayList<CustomerAccount> retrieveCustomerAccounts() {
+        ArrayList<CustomerAccount> accountsList = new ArrayList<CustomerAccount>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
             Statement statement = conn.createStatement();
-            String sql = "SELECT * FROM customerAccounts WHERE "+customerAccount.getCustomerID();
+            String sql = "SELECT * FROM customerAccounts";
             ResultSet resultSet = statement.executeQuery(sql);
 
-            //
+            while (resultSet.next()) {
+                CustomerAccount account = new CustomerAccount();
+                account.setCustomerID(resultSet.getInt("CustomerID"));
+                account.setCustomerName(resultSet.getNString("CustomerName"));
+                account.setAddressLine1(resultSet.getNString("AddressLine1"));
+                account.setAddressLine2(resultSet.getNString("AddressLine2"));
+                account.setAddressLine3(resultSet.getNString("AddressLine3"));
+                account.setPostCode(resultSet.getNString("Postcode"));
+                account.setContact(resultSet.getNString("Contact"));
+                account.setContactTitle(resultSet.getNString("ContactTitle"));
+                account.setTelephone(resultSet.getNString("Telephone"));
+                account.setContact(resultSet.getNString("Mobile"));
+                account.setPayLate(resultSet.getBoolean("PayLate"));
+                account.setBusiness(resultSet.getBoolean("isBusiness"));
+            }
 
             conn.close();
-            return true;
         } catch(Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return accountsList;
     };
 
     // Retrieve vehicle record from database
