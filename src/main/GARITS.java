@@ -80,6 +80,7 @@ public class GARITS {
             case "Receptionist":
                 containerPanel.add("receptionist menu", new ReceptionistMenu(this));
                 containerPanel.add("create new job",new JobSheet(this));
+                containerPanel.add("stock control system",new StockControlMenu(this));
                 cl.show(containerPanel, "receptionist menu");
                 break;
             case "Mechanic":
@@ -94,7 +95,7 @@ public class GARITS {
         //new LoginPage();
 
         // TESTS
-        String role = "Franchisee";
+        String role = "Receptionist";
         new GARITS(role);
     }
 }
