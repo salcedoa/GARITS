@@ -184,4 +184,16 @@ public class GUICreator {
         saveButton.setBounds(posX,posY,100,30);
         return saveButton;
     }
+
+    public JButton createCheckStockButton(JPanel target,int posX,int posY){
+        JButton checkStockButton = new JButton("CHECK STOCK");
+        target.add(checkStockButton);
+        checkStockButton.setBackground(Color.black);
+        checkStockButton.setForeground(Color.white);
+        checkStockButton.setOpaque(true);
+        checkStockButton.setBorderPainted(false);
+        checkStockButton.setBounds(posX,posY,100,30);
+        return checkStockButton;
+    }
+
 }
