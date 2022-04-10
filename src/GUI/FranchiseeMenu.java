@@ -87,6 +87,7 @@ public class FranchiseeMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO: Alter customer accounts
+                cl.show(containerPanel,"view customer accounts");
             }
         });
     }
