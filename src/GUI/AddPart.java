@@ -125,9 +125,13 @@ public class AddPart extends JPanel{
                 part.setVehicle(vehicle.getText());
                 part.setSoldIn(soldIn.getText());
                 part.setManufacturer(manufacturer.getText());
-//                part.setManufacturerPrice(manufacturerPrice.getText());  - throwing errors
-//                part.setCustomerCost(customerCost.getText());             - throwing error
-//                part.setLowLevelThreshold(lowLevelThreshold.getText());   - throwing error
+                float manufacturePriceFloat = Float.parseFloat(manufacturerPrice.getText());
+                part.setManufacturerPrice(manufacturePriceFloat);
+                float customerCostFloat = Float.parseFloat(customerCost.getText());
+                part.setCustomerCost(customerCostFloat);
+                Integer lowLevelThresholdInt = Integer.parseInt(lowLevelThreshold.getText());
+                part.setLowLevelThreshold(lowLevelThresholdInt);
+
 
 //                if(SQLHelper.insertStock(part)) { no insert stock in sql helper or other name etc
 //                    JOptionPane.showMessageDialog(AddPart.this, "Added new part to stock table");
