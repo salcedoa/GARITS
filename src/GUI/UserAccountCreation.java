@@ -108,6 +108,8 @@ public class UserAccountCreation extends JPanel{
                 userAccount.setUsername(username.getText());
                 userAccount.setPassword(password.getText());
                 userAccount.setAccountType((String) accountTypeMenu.getSelectedItem());
+                float hourlyRateFloat = Float.parseFloat(hourlyRate.getText());
+                userAccount.setHourlyRate(hourlyRateFloat);
                 if( sqlHelper.insertUser(userAccount)) {
                     JOptionPane.showMessageDialog(UserAccountCreation.this, "Added new user account to database");
                     clearTextFields();
