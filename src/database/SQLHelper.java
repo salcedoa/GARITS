@@ -1,20 +1,16 @@
 package database;
 
 import admin.UserAccount;
-import admin.UserAccount;
 import businesslogic.*;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SQLHelper {
     // usually 82.0.184.217:3306
-    private String dbAddress = "localhost:3306";
-    private String dbPassword = "Lancaster6";
-    private String dbURL = "jdbc:mysql://"+dbAddress+"/GARITS_DB?allowPublicKeyRetrieval=true&useSSL=false";
+    private final String dbAddress = "localhost:3306";
+    private final String dbPassword = "Lancaster6";
+    private final String dbURL = "jdbc:mysql://"+dbAddress+"/GARITS_DB?allowPublicKeyRetrieval=true&useSSL=false";
 
     public SQLHelper() {
 
@@ -191,6 +187,7 @@ public class SQLHelper {
                 account.setContact(resultSet.getNString("Mobile"));
                 account.setPayLate(resultSet.getBoolean("PayLate"));
                 account.setBusiness(resultSet.getBoolean("isBusiness"));
+                accountsList.add(account);
             }
 
             conn.close();
