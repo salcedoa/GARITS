@@ -68,6 +68,7 @@ public class GUICreator {
         return newJobsButton;
     }
 
+
     // used in customer record creation menu
     public JButton createBackButton(JPanel target, int posX, int posY) {
         JButton backButton = new JButton("BACK");
@@ -154,11 +155,60 @@ public class GUICreator {
         stockControlButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Stock control control panel shows up
+                cl.show(containerPanel,"stock control system");
             }
         });
 
         return stockControlButton;
+    }
+
+    public JButton createCheckStockButton(JPanel target, int width){
+        JButton checkStockButton = new JButton("CHECK STOCK");
+        target.add(checkStockButton);
+        checkStockButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        checkStockButton.setMaximumSize(new Dimension(width,50));
+
+        checkStockButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: check stock menu shows up
+            }
+        });
+        return checkStockButton;
+    }
+
+    public JButton createReturnButton(JPanel target,int width){
+        JButton returnButton = new JButton("RETURN");
+        target.add(returnButton);
+        returnButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        returnButton.setMaximumSize(new Dimension(width,50));
+        returnButton.setBackground(Color.BLACK);
+        returnButton.setForeground(Color.WHITE);
+        returnButton.setOpaque(true);
+        returnButton.setBorderPainted(false);
+
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cl.first(containerPanel);
+            }
+        });
+        return returnButton;
+    }
+
+    public JButton createManageStockButton(JPanel target,int width){
+        JButton manageStockButton = new JButton("MANAGE STOCK");
+        target.add(manageStockButton);
+        manageStockButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        manageStockButton.setMaximumSize(new Dimension(width,50));
+
+        manageStockButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO: manage stock menu shows up
+            }
+        });
+        return manageStockButton;
     }
 
     // LABELS
@@ -185,15 +235,5 @@ public class GUICreator {
         return saveButton;
     }
 
-    public JButton createCheckStockButton(JPanel target,int posX,int posY){
-        JButton checkStockButton = new JButton("CHECK STOCK");
-        target.add(checkStockButton);
-        checkStockButton.setBackground(Color.black);
-        checkStockButton.setForeground(Color.white);
-        checkStockButton.setOpaque(true);
-        checkStockButton.setBorderPainted(false);
-        checkStockButton.setBounds(posX,posY,100,30);
-        return checkStockButton;
-    }
 
 }
