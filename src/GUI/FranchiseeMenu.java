@@ -71,6 +71,7 @@ public class FranchiseeMenu extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO: Specify spare parts (GUI creator)
+                cl.show(containerPanel,"add part");
             }
         });
 

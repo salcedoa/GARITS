@@ -70,7 +70,7 @@ public class GARITS {
             case "Franchisee":
                 containerPanel.add("franchisee menu", new FranchiseeMenu(this));
                 containerPanel.add("customer creation form", new CustomerAccountCreation(this));
-                containerPanel.add("create new job",new JobSheet(this));
+                containerPanel.add("add part", new AddPart(this));
                 cl.show(containerPanel, "franchisee menu");
                 break;
             case "Foreman":

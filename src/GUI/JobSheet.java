@@ -27,6 +27,7 @@ public class JobSheet extends JPanel {
     private JTextField telephone = new JTextField(20);
     private JTextArea notes = new JTextArea(25,25);
 
+
     private JLabel customerNameLabel = new JLabel("Full name");
     private JLabel numberPlateLabel = new JLabel("Number Plate");
     private JLabel telephoneLabel = new JLabel("Telephone");
@@ -65,6 +66,8 @@ public class JobSheet extends JPanel {
                 cl.first(containerPanel);
             }
         });
+
+
         int xPos = 300;
 
         add(customerNameLabel);
@@ -96,6 +99,8 @@ public class JobSheet extends JPanel {
         notesLabel.setBounds(xPos,260,270,20);
         add(notes);
         notes.setBounds(xPos,280,400,200);
+        notes.setLineWrap(true);
+        notes.setWrapStyleWord(true);
 
         JButton saveButton = builder.createSaveButton(this,450,530);
         saveButton.addActionListener(new ActionListener() {
