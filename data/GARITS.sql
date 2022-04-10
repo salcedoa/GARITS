@@ -44,7 +44,6 @@ Make varchar(30),
 Model varchar(30) NOT NULL,
 CustomerTelephone varchar(30),
 DescriptionRequiredWork varchar(400),
-FOREIGN KEY (NumberPlate) REFERENCES vehicles(NumberPlate)
 );
 
 CREATE TABLE invoices(
