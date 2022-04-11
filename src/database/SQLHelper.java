@@ -16,6 +16,8 @@ public class SQLHelper {
 
     }
 
+    /** INSERTION STATEMENTS **/
+
     // Insert a customer account into the database
     public Boolean insertCustomer(CustomerAccount customerAccount) {
         try {
@@ -53,6 +55,14 @@ public class SQLHelper {
             } catch (SQLIntegrityConstraintViolationException e){
                 return false;
             }
+
+            // get customer ID
+            Statement statement2 = conn.createStatement();
+            // chooses last record
+            sql = "SELECT * FROM customerRecords ORDER BY CustomerID DESC LIMIT 1;";
+            ResultSet rs = statement2.executeQuery(sql);
+            rs.next();
+            customerAccount.setCustomerID(rs.getInt("CustomerID"));
 
             // close connection
             conn.close();
@@ -99,6 +109,14 @@ public class SQLHelper {
                 return false;
             }
 
+            // get the user ID
+            Statement statement2 = conn.createStatement();
+            // chooses last record
+            sql = "SELECT * FROM jobs ORDER BY JobID DESC LIMIT 1;";
+            ResultSet rs = statement2.executeQuery(sql);
+            rs.next();
+            job.setJobID(rs.getInt("JobID"));
+
             conn.close();
             return true;
         } catch (Exception e) {
@@ -106,6 +124,8 @@ public class SQLHelper {
             return false;
         }
     }
+
+    // Insert Part into database
 
     // Insert User into database
     public Boolean insertUser(UserAccount user) {
@@ -151,6 +171,7 @@ public class SQLHelper {
             // chooses last record
             sql = "SELECT * FROM users ORDER BY AccountID DESC LIMIT 1;";
             ResultSet rs = statement2.executeQuery(sql);
+            rs.next();
             user.setAccountID(rs.getInt("CustomerID"));
 
             // close connection
@@ -163,6 +184,8 @@ public class SQLHelper {
         }
     }
 
+    /** RETRIEVAL STATEMENTS **/
+
     // Retrieve a customer accounts from the database (for display)
     public ArrayList<CustomerAccount> retrieveCustomerAccounts() {
         ArrayList<CustomerAccount> accountsList = new ArrayList<CustomerAccount>();
@@ -170,7 +193,7 @@ public class SQLHelper {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
             Statement statement = conn.createStatement();
-            String sql = "SELECT * FROM customerAccounts";
+            String sql = "SELECT * FROM customerRecords";
             ResultSet resultSet = statement.executeQuery(sql);
 
             while (resultSet.next()) {
@@ -184,7 +207,7 @@ public class SQLHelper {
                 account.setContact(resultSet.getNString("Contact"));
                 account.setContactTitle(resultSet.getNString("ContactTitle"));
                 account.setTelephone(resultSet.getNString("Telephone"));
-                account.setContact(resultSet.getNString("Mobile"));
+                account.setMobile(resultSet.getNString("Mobile"));
                 account.setPayLate(resultSet.getBoolean("PayLate"));
                 account.setBusiness(resultSet.getBoolean("isBusiness"));
                 accountsList.add(account);
@@ -217,9 +240,20 @@ public class SQLHelper {
         }
     }
 
-    // Restore database from .bak file
-    public Boolean restoreDB(String filePath) {
-        return false;
+    /** DELETION STATEMENTS **/
+
+    // delete CustomerRecord from the database
+    public void deleteCustomerRecord(int id) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
+            Statement statement = conn.createStatement();
+            String sql = "DELETE FROM customerRecords WHERE CustomerID = " + id;
+            statement.execute(sql);
+            conn.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

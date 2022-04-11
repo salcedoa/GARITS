@@ -3,6 +3,9 @@ package businesslogic;
 public class Job {
 
     private String customerName,numberPlate,make,model,telephone,notes;
+    private int jobID;
+
+    public int getJobID() { return jobID; }
 
     public String getCustomerName() { return customerName; }
 
@@ -16,6 +19,8 @@ public class Job {
 
     public String getNotes() { return notes; }
 
+    public void setJobID(int jobID) { this.jobID = jobID; }
+
     public void setCustomerName(String customerName) { this.customerName = customerName; }
 
     public void setNumberPlate(String numberPlate) { this.numberPlate = numberPlate; }
@@ -27,8 +32,6 @@ public class Job {
     public void setTelephone(String telephone) { this.telephone = telephone; }
 
     public void setNotes(String notes) { this.notes = notes; }
-
-
 
     public Job(){
 

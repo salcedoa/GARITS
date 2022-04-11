@@ -96,7 +96,7 @@ public class GARITS {
         //new LoginPage();
 
         // TESTS
-        String role = "Receptionist";
+        String role = "Franchisee";
         new GARITS(role);
     }
 }
