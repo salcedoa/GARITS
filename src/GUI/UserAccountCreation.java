@@ -108,15 +108,25 @@ public class UserAccountCreation extends JPanel{
                 userAccount.setUsername(username.getText());
                 userAccount.setPassword(password.getText());
                 userAccount.setAccountType((String) accountTypeMenu.getSelectedItem());
-                float hourlyRateFloat = Float.parseFloat(hourlyRate.getText());
-                userAccount.setHourlyRate(hourlyRateFloat);
+
+                // error handling for when the parseFloat method receives an empty string
+                if (!hourlyRate.getText().equals("")) {
+                    try {
+                        float hourlyRateFloat = Float.parseFloat(hourlyRate.getText());
+                        userAccount.setHourlyRate(hourlyRateFloat);
+                    } catch (NumberFormatException ex) {
+                        userAccount.setHourlyRate(0.00f);
+                    }
+                } else {
+                    userAccount.setHourlyRate(0.00f);
+                }
+
                 if( sqlHelper.insertUser(userAccount)) {
                     JOptionPane.showMessageDialog(UserAccountCreation.this, "Added new user account to database");
                     clearTextFields();
                 } else {
                     JOptionPane.showMessageDialog(UserAccountCreation.this, "Error: Fields not entered correctly or required fields missing");
                 }
-
             }
         });
     }
