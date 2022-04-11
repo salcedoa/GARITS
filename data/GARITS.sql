@@ -43,7 +43,7 @@ NumberPlate varchar (10) NOT NULL,
 Make varchar(30),
 Model varchar(30) NOT NULL,
 CustomerTelephone varchar(30),
-DescriptionRequiredWork varchar(400),
+DescriptionRequiredWork varchar(400)
 );
 
 CREATE TABLE invoices(
@@ -59,7 +59,7 @@ LabourCost decimal(10,2),
 AddedVAT decimal(10,2)NOT NULL,
 Total decimal (10,2)NOT NULL,
 DiscountApplied decimal (10,2),
-FOREIGN KEY (VehicleID) REFERENCES vehicles(Vehicle),
+FOREIGN KEY (VehicleID) REFERENCES vehicles(NumberPlate),
 FOREIGN KEY (JobID) REFERENCES jobs(JobID)
 );
 
@@ -140,10 +140,10 @@ VALUES ('Penelope Carr', 'Receptionist', 'Penelope', 'PinkMobile'),
 ('Gavin Ross', 'Mechanic', 'Gavin', 'LondonWeight'),
 ('Anthony Wild', 'Mechanic', 'Anthony', 'MelodyMan');
 
-INSERT INTO customerRecords (customerName, AddressLine1, AddressLine2, AddressLine3, Postcode, Contact, ContactTitle, Telephone, Mobile, Notes, isBusiness)
-VALUES ('Transco Gas Supplies','Methane Buildings', 'Sulpher Lane', 'Stenchville, Bucks', 'HP19 2MT', 'Mr Jack Varta', 'Fleet Controller', 01494683725, null, 'Transco have a fleet of vehicles.', TRUE),
-('John Doherty', 'Miscellaneous House', 'Unknown Street', 'Whichville, Nowhereshire','MT1 2UP', null, null, '0101 010 0101', '07070 070 707', null, FALSE),
-('William Gates','World Domination House','Enormous Street','Richville', 'NW10 4AT', null,null,'020 7477 3333', '0666 666 666', null, FALSE);
+INSERT INTO customerRecords (customerName, AddressLine1, AddressLine2, AddressLine3, Postcode, Contact, ContactTitle, Telephone, Mobile, isBusiness)
+VALUES ('Transco Gas Supplies','Methane Buildings', 'Sulpher Lane', 'Stenchville, Bucks', 'HP19 2MT', 'Mr Jack Varta', 'Fleet Controller', 01494683725, 'Transco have a fleet of vehicles.', TRUE),
+('John Doherty', 'Miscellaneous House', 'Unknown Street', 'Whichville, Nowhereshire','MT1 2UP', null, null, '0101 010 0101', '07070 070 707', FALSE),
+('William Gates','World Domination House','Enormous Street','Richville', 'NW10 4AT', null,null,'020 7477 3333', '0666 666 666', FALSE);
 
 INSERT INTO vehicles (NumberPlate, Colour, LastMoT, Make, Model, CustomerID)
 VALUES ('AA69 CPG', 'White', '2019-12-05', 'Fjord', 'Transit Van', 1),
