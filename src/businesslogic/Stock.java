@@ -2,6 +2,8 @@ package businesslogic;
 
 public class Stock {
 
+    public int getPartID() { return partID; }
+
     public String getPartName() { return partName; }
 
     public String getPartType() { return partType; }
@@ -21,6 +23,8 @@ public class Stock {
     public int getLowLevelThreshold() { return lowLevelThreshold; }
 
     public int getOrdered() { return ordered; }
+
+    public void setPartID(int partID) { this.partID = partID; }
 
     public void setPartName(String partName) { this.partName = partName; }
 
@@ -44,7 +48,7 @@ public class Stock {
 
     private String partName,partType,vehicle,soldIn,manufacturer;
     private float manufacturerPrice,customerCost;
-    private int stockLevel,lowLevelThreshold,ordered;
+    private int partID, stockLevel,lowLevelThreshold,ordered;
 
 
     public Stock(){

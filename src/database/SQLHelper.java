@@ -126,6 +126,55 @@ public class SQLHelper {
     }
 
     // Insert Part into database
+    public Boolean insertPart(Stock part) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
+            String sql = "INSERT INTO stock " +
+                    "(PartName,PartType,Vehicle,SoldIn,Manufacturer,ManufacturerPrice,StockLevel,LowLevelThreshold,CustomerCost,Ordered)"
+                    + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            String[] partsFields = {part.getPartName(),part.getPartType(), part.getVehicle(),part.getSoldIn(), part.getManufacturer()};
+
+            // insert the values of part object into the prepared statement
+            for (int i = 0; i != partsFields.length; i++) {
+                if (partsFields[i].equals("")) {
+                    // i begins from 0 but the parameter indices in the prepared statement begin from 1
+                    statement.setNString(i+1,null);
+                    System.out.println("detected null value: "+partsFields[i]);
+                } else {
+                    statement.setNString(i+1,partsFields[i]);
+                    System.out.println("detected value: "+partsFields[i]);
+                }
+            }
+            statement.setFloat(6,part.getManufacturerPrice());
+            statement.setInt(7, part.getStockLevel());
+            statement.setInt(8,part.getLowLevelThreshold());
+            statement.setFloat(9,part.getCustomerCost());
+            statement.setInt(10,part.getOrdered());
+
+            // execute the statement
+            try {
+                statement.executeUpdate();
+            } catch (SQLIntegrityConstraintViolationException e){
+                return false;
+            }
+
+            // get the user ID
+            Statement statement2 = conn.createStatement();
+            // chooses last record
+            sql = "SELECT * FROM stock ORDER BY PartID DESC LIMIT 1;";
+            ResultSet rs = statement2.executeQuery(sql);
+            rs.next();
+            part.setPartID(rs.getInt("JobID"));
+
+            conn.close();
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     // Insert User into database
     public Boolean insertUser(UserAccount user) {
@@ -172,7 +221,7 @@ public class SQLHelper {
             sql = "SELECT * FROM users ORDER BY AccountID DESC LIMIT 1;";
             ResultSet rs = statement2.executeQuery(sql);
             rs.next();
-            user.setAccountID(rs.getInt("CustomerID"));
+            user.setAccountID(rs.getInt("AccountID"));
 
             // close connection
             conn.close();
@@ -224,6 +273,8 @@ public class SQLHelper {
 
     // Retrieve a Job from database
 
+    /** BACK UP STATEMENT */
+
     // Back up database data to a directory
     public Boolean backUpDB(String path) {
         try {
@@ -242,13 +293,27 @@ public class SQLHelper {
 
     /** DELETION STATEMENTS **/
 
-    // delete CustomerRecord from the database
-    public void deleteCustomerRecord(int id) {
+    // delete any item besides vehicles from the database
+    public void deleteItem(int id, String table, String columnName) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
             Statement statement = conn.createStatement();
-            String sql = "DELETE FROM customerRecords WHERE CustomerID = " + id;
+            String sql = "DELETE FROM "+table+" WHERE "+columnName+" = " + String.valueOf(id);
+            statement.execute(sql);
+            conn.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // delete vehicle from the database
+    public void deleteVehicle(String numberPlate) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
+            Statement statement = conn.createStatement();
+            String sql = "DELETE FROM vehicles WHERE NumberPlate = '"+numberPlate+"'";
             statement.execute(sql);
             conn.close();
         } catch(Exception e) {
@@ -265,9 +330,9 @@ public class SQLHelper {
 
 
             conn.close();
-            return true
+            return true;
         } catch(Exception e) {
             e.printStackTrace();
-            return false
+            return false;
         }
     }*/
