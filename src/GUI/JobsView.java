@@ -46,7 +46,7 @@ public class JobsView extends JPanel {
         });
 
         // CHANGE BUTTON (only for receptionist)
-        if (garits.getRole() == "RECEPTIONIST") {
+        if (garits.getRole() == "Receptionist") {
             add(changeButton);
             changeButton.setBackground(Color.BLACK);
             changeButton.setForeground(Color.WHITE);
@@ -78,7 +78,7 @@ public class JobsView extends JPanel {
         });
 
         // DELETE BUTTON
-        if (garits.getRole() == "RECEPTIONIST") {
+        if (garits.getRole() == "Receptionist") {
             add(deleteButton);
             deleteButton.setBackground(Color.BLACK);
             deleteButton.setForeground(Color.WHITE);
