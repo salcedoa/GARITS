@@ -17,12 +17,16 @@ public class CustomerAccountsView extends JPanel {
     private JPanel containerPanel;
     private CardLayout cl;
 
+    // title and table + scrollpane
     private JLabel titleLabel = new JLabel("VIEW CUSTOMER ACCOUNTS");
     private CustomerAccountsTable table = new CustomerAccountsTable();
     private JScrollPane scrollPane = new JScrollPane(table);
 
+    // buttons
     private JButton deleteButton = new JButton("DELETE");
     private JButton changeButton = new JButton("CHANGE");
+    private JButton addVehicleButton = new JButton("ADD VEHICLE");
+    private int buttonWidth = 150;
 
     public CustomerAccountsView(GARITS garits) {
         setLayout(null);
@@ -53,15 +57,19 @@ public class CustomerAccountsView extends JPanel {
         deleteButton.setForeground(Color.WHITE);
         deleteButton.setOpaque(true);
         deleteButton.setBorderPainted(false);
-        deleteButton.setBounds(200,150,100,30);
+        deleteButton.setBounds(200,150,buttonWidth,40);
 
         deleteButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int row = table.getSelectedRow();
-                int id = Integer.parseInt(table.getValueAt(row,0).toString());
-                sqlHelper.deleteCustomerRecord(id);
-                table.updateTable();
+                if (row == -1) {
+                    JOptionPane.showMessageDialog(CustomerAccountsView.this, "No record selected");
+                } else {
+                    int id = Integer.parseInt(table.getValueAt(row,0).toString());
+                    sqlHelper.deleteItem(id,"customerRecords","CustomerID");
+                    table.updateTable();
+                }
             }
         });
 
@@ -71,7 +79,7 @@ public class CustomerAccountsView extends JPanel {
         changeButton.setForeground(Color.WHITE);
         changeButton.setOpaque(true);
         changeButton.setBorderPainted(false);
-        changeButton.setBounds(200,200,100,30);
+        changeButton.setBounds(200,200,buttonWidth,40);
 
         // BACK BUTTON
         JButton backButton = builder.createBackButton(this,700,30);
@@ -81,5 +89,13 @@ public class CustomerAccountsView extends JPanel {
                 cl.first(containerPanel);
             }
         });
+
+        // ADD VEHICLE BUTTON
+        add(addVehicleButton);
+        addVehicleButton.setBackground(Color.BLACK);
+        addVehicleButton.setForeground(Color.WHITE);
+        addVehicleButton.setOpaque(true);
+        addVehicleButton.setBorderPainted(false);
+        addVehicleButton.setBounds(200,250,buttonWidth,40);
     }
 }
