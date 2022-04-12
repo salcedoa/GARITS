@@ -26,6 +26,7 @@ public class CustomerAccountsView extends JPanel {
     private JButton deleteButton = new JButton("DELETE");
     private JButton changeButton = new JButton("CHANGE");
     private JButton addVehicleButton = new JButton("ADD VEHICLE");
+    private JButton addDiscountButton = new JButton("ADD DISCOUNT");
     private int buttonWidth = 150;
 
     public CustomerAccountsView(GARITS garits) {
@@ -81,6 +82,19 @@ public class CustomerAccountsView extends JPanel {
         changeButton.setBorderPainted(false);
         changeButton.setBounds(200,200,buttonWidth,40);
 
+        changeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = table.getSelectedRow();
+                if (row == -1) {
+                    JOptionPane.showMessageDialog(CustomerAccountsView.this, "No record selected");
+                } else {
+                    int id = Integer.parseInt(table.getValueAt(row,0).toString());
+                    // TODO: show 'change customer account' form
+                }
+            }
+        });
+
         // BACK BUTTON
         JButton backButton = builder.createBackButton(this,700,30);
         backButton.addActionListener(new ActionListener() {
@@ -97,5 +111,39 @@ public class CustomerAccountsView extends JPanel {
         addVehicleButton.setOpaque(true);
         addVehicleButton.setBorderPainted(false);
         addVehicleButton.setBounds(200,250,buttonWidth,40);
+
+        addVehicleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = table.getSelectedRow();
+                if (row == -1) {
+                    JOptionPane.showMessageDialog(CustomerAccountsView.this, "No record selected");
+                } else {
+                    int id = Integer.parseInt(table.getValueAt(row,0).toString());
+                    // TODO: show 'add vehicle' form
+                }
+            }
+        });
+
+        // ADD DISCOUNT BUTTON
+        add(addDiscountButton);
+        addDiscountButton.setBackground(Color.BLACK);
+        addDiscountButton.setForeground(Color.WHITE);
+        addDiscountButton.setOpaque(true);
+        addDiscountButton.setBorderPainted(false);
+        addDiscountButton.setBounds(200,300,buttonWidth,40);
+
+        addDiscountButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int row = table.getSelectedRow();
+                if (row == -1) {
+                    JOptionPane.showMessageDialog(CustomerAccountsView.this, "No record selected");
+                } else {
+                    int id = Integer.parseInt(table.getValueAt(row,0).toString());
+                    // TODO: show 'add discount' form
+                }
+            }
+        });
     }
 }

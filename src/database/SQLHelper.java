@@ -85,21 +85,19 @@ public class SQLHelper {
             // the query is created
             String sql = "INSERT INTO jobs " +
                     "(CustomerName, NumberPlate, Make," +
-                    "Model,CustomerTelephone,DescriptionRequiredWork) " +
-                    "VALUES (?, ?, ?, ?, ?, ?) ";
+                    "Model,CustomerTelephone,DescriptionRequiredWork,Status) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?) ";
 
             PreparedStatement statement = conn.prepareStatement(sql);
             String[] jobFieldList = {job.getCustomerName(), job.getNumberPlate(), job.getMake(),
-                                        job.getModel(), job.getTelephone(),job.getNotes()};
+                                        job.getModel(), job.getTelephone(),job.getNotes(),job.getStatus()};
 
             for (int i = 0; i != jobFieldList.length; i++) {
                 if (jobFieldList[i].equals("")) {
                     // i begins from 0 but the parameter indices in the prepared statement begin from 1
                     statement.setNString(i+1,null);
-                    System.out.println("detected null value: "+jobFieldList[i]);
                 } else {
                     statement.setNString(i+1,jobFieldList[i]);
-                    System.out.println("detected value: "+jobFieldList[i]);
                 }
             }
 
@@ -166,7 +164,7 @@ public class SQLHelper {
             sql = "SELECT * FROM stock ORDER BY PartID DESC LIMIT 1;";
             ResultSet rs = statement2.executeQuery(sql);
             rs.next();
-            part.setPartID(rs.getInt("JobID"));
+            part.setPartID(rs.getInt("PartID"));
 
             conn.close();
             return true;
@@ -272,6 +270,33 @@ public class SQLHelper {
     // Retrieve vehicle record from database
 
     // Retrieve a Job from database
+    public ArrayList<Job> retrieveJobs() {
+        ArrayList<Job> jobsList = new ArrayList<Job>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
+            Statement statement = conn.createStatement();
+            String sql = "SELECT * FROM jobs";
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            while (resultSet.next()) {
+                Job job = new Job();
+                job.setJobID(resultSet.getInt("JobID"));
+                job.setCustomerName(resultSet.getNString("CustomerName"));
+                job.setNumberPlate(resultSet.getNString("NumberPlate"));
+                job.setMake(resultSet.getNString("Make"));
+                job.setModel(resultSet.getNString("Model"));
+                job.setTelephone(resultSet.getNString("CustomerTelephone"));
+                job.setNotes(resultSet.getNString("DescriptionRequiredWork"));
+                job.setStatus(resultSet.getNString("Status"));
+                jobsList.add(job);
+            }
+            conn.close();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return jobsList;
+    };
 
     /** BACK UP STATEMENT */
 

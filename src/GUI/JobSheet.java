@@ -113,6 +113,7 @@ public class JobSheet extends JPanel {
                 job.setModel(model.getText());
                 job.setTelephone(telephone.getText());
                 job.setNotes(notes.getText());
+                job.setStatus("Not Started");
 
                 if(sqlHelper.insertJob(job)){
                     JOptionPane.showMessageDialog(JobSheet.this,"Added new job to database");

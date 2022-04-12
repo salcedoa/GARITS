@@ -1,6 +1,6 @@
 package GUI;
 
-import businesslogic.CustomerAccount;
+import businesslogic.Job;
 import database.SQLHelper;
 
 import javax.swing.*;
@@ -8,17 +8,17 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class CustomerAccountsTable extends JTable {
+public class JobsTable extends JTable {
     private SQLHelper sqlHelper = new SQLHelper();
-    private ArrayList<CustomerAccount> customerList;
-    private String columnNames[] = {"ID","Name","Contact","Contact Title", "Business"};
+    private ArrayList<Job> jobsList;
+    private String columnNames[] = {"ID","Name", "Description","Status"};
     private DefaultTableModel tableModel = new DefaultTableModel(columnNames,0);
 
-    public CustomerAccountsTable() {
+    public JobsTable() {
         setModel(tableModel);
-        customerList = sqlHelper.retrieveCustomerAccounts();
-        for (CustomerAccount i : customerList) {
-            Object[] row = {i.getCustomerID(),i.getCustomerName(),i.getContact(),i.getContactTitle(),i.getBusiness()};
+        jobsList = sqlHelper.retrieveJobs();
+        for (Job i : jobsList) {
+            Object[] row = {i.getJobID(),i.getCustomerName(),i.getNotes(),i.getStatus()};
             tableModel.addRow(row);
         }
 
@@ -33,17 +33,16 @@ public class CustomerAccountsTable extends JTable {
         // setting the column widths
         getColumn("ID").setPreferredWidth(50);
         getColumn("Name").setPreferredWidth(200);
-        getColumn("Contact").setPreferredWidth(140);
-        getColumn("Contact Title").setPreferredWidth(140);
-        getColumn("Business").setPreferredWidth(80);
-    };
+        getColumn("Description").setPreferredWidth(300);
+        getColumn("Status").setPreferredWidth(120);
+    }
 
     public void updateTable() {
         // clears whole table and reinserts everything
         tableModel.setRowCount(0);
-        customerList = sqlHelper.retrieveCustomerAccounts();
-        for (CustomerAccount i : customerList) {
-            Object[] row = {i.getCustomerID(),i.getCustomerName(),i.getContact(),i.getContactTitle(),i.getBusiness()};
+        jobsList = sqlHelper.retrieveJobs();
+        for (Job i : jobsList) {
+            Object[] row = {i.getJobID(),i.getCustomerName(),i.getNotes(),i.getStatus()};
             tableModel.addRow(row);
         }
     }
