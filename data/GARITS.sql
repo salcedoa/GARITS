@@ -43,7 +43,8 @@ NumberPlate varchar (10) NOT NULL,
 Make varchar(30),
 Model varchar(30) NOT NULL,
 CustomerTelephone varchar(30),
-DescriptionRequiredWork varchar(400)
+DescriptionRequiredWork varchar(400),
+Status varchar(100)
 );
 
 CREATE TABLE invoices(
