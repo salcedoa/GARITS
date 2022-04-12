@@ -76,5 +76,30 @@ public class JobsView extends JPanel {
                 cl.first(containerPanel);
             }
         });
+
+        // DELETE BUTTON
+        if (garits.getRole() == "RECEPTIONIST") {
+            add(deleteButton);
+            deleteButton.setBackground(Color.BLACK);
+            deleteButton.setForeground(Color.WHITE);
+            deleteButton.setOpaque(true);
+            deleteButton.setBorderPainted(false);
+            deleteButton.setBounds(200,200,buttonWidth,40);
+
+            deleteButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    int row = table.getSelectedRow();
+                    if (row == -1) {
+                        JOptionPane.showMessageDialog(JobsView.this, "No record selected");
+                    } else {
+                        int id = Integer.parseInt(table.getValueAt(row,0).toString());
+                        // TODO: show 'change jobs' form
+                    }
+                }
+            });
+        }
+
+
     }
 }
