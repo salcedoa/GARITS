@@ -21,7 +21,7 @@ public class DiscountForm extends JPanel {
 
     private JLabel titleLabel = new JLabel("CHOOSE DISCOUNT TYPE");
 
-    private String discountTypes[] = {"Fixed,Variable,Flexible"};
+    private String discountTypes[] = {"Fixed","Variable","Flexible"};
     private JComboBox discountType = new JComboBox(discountTypes);
 
     private JLabel discountTypeLabel = new JLabel("Discount Type");
@@ -33,7 +33,7 @@ public class DiscountForm extends JPanel {
     private JTextField discountPercentage = new JTextField(50);
     private JTextField flexibleLowRange = new JTextField(50);
     private JTextField flexibleHighRange = new JTextField(50);
-    private JTextField variableBusinessType = new JTextField("50");
+    private JTextField variableBusinessType = new JTextField(50);
 
     private JTextField jTextFieldsArray[] = {discountPercentage, flexibleLowRange, flexibleHighRange, variableBusinessType};
 
@@ -74,22 +74,22 @@ public class DiscountForm extends JPanel {
         discountType.setBounds(xPos, 145, 250, 20);
 
         add(discountPercentageLabel);
-        discountPercentageLabel.setBounds(xPos, 170, 80, 20);
+        discountPercentageLabel.setBounds(xPos, 170, 200, 20);
         add(discountPercentage);
         discountPercentage.setBounds(xPos, 190, 250, 20);
 
         add(flexibleLowRangeLabel);
-        flexibleLowRangeLabel.setBounds(xPos, 215, 80, 20);
+        flexibleLowRangeLabel.setBounds(xPos, 215, 200, 20);
         add(flexibleLowRange);
         flexibleLowRange.setBounds(xPos, 235, 250, 20);
 
         add(flexibleHighRangeLabel);
-        flexibleHighRangeLabel.setBounds(xPos, 260, 80, 20);
+        flexibleHighRangeLabel.setBounds(xPos, 260, 200, 20);
         add(flexibleHighRange);
         flexibleHighRange.setBounds(xPos, 280, 250, 20);
 
         add(variableBusinessTypeLabel);
-        variableBusinessTypeLabel.setBounds(xPos, 305, 80, 20);
+        variableBusinessTypeLabel.setBounds(xPos, 305, 200, 20);
         add(variableBusinessType);
         variableBusinessType.setBounds(xPos, 325, 250, 20);
 

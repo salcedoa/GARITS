@@ -77,6 +77,7 @@ public class GARITS {
                 containerPanel.add("customer creation form", new CustomerAccountCreation(this));
                 containerPanel.add("add part", new AddPart(this));
                 containerPanel.add("view customer accounts", new CustomerAccountsView(this));
+                containerPanel.add("discount form",new DiscountForm(this));
                 cl.show(containerPanel, "franchisee menu");
                 break;
             case "Foreman":
