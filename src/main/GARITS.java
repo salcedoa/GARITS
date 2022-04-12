@@ -31,8 +31,13 @@ public class GARITS {
         return cl;
     }
 
+    public String getRole() {
+        return role;
+    }
+
     // denotes the role of the user that has logged into GARITS
     private String role;
+
 
     // initialises the system by checking the configurations and settings in the data folder
     public GARITS(String role) {
