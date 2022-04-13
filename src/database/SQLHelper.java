@@ -265,6 +265,52 @@ public class SQLHelper {
         }
     }
 
+    // Insert discount
+    public Boolean insertDiscount(Discounts discount) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
+
+            // the query is created
+            String sql = "INSERT INTO discounts " +
+                    "(discountType,discountPercentage,flexibleLowRange," +
+                    "flexibleHighRange,variableBusinessType,CustomerID) " +
+                    "VALUES (?, ?, ?, ?, ?, ?)";
+
+            // creating mySQL query - should return ResultSet object
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setNString(1,discount.getDiscountType());
+            statement.setInt(2,discount.getDiscountPercentage());
+            statement.setInt(3,discount.getFlexibleLowRange());
+            statement.setInt(4,discount.getFlexibleHighRange());
+            statement.setNString(5,discount.getVariableBusinessType());
+            statement.setInt(6,discount.getCustomerID());
+
+            try {
+                statement.executeUpdate();
+            } catch (SQLException e){
+                return false;
+            }
+
+            // get the user ID
+            Statement statement2 = conn.createStatement();
+            // chooses last record
+            sql = "SELECT * FROM discounts ORDER BY discountID DESC LIMIT 1;";
+            ResultSet rs = statement2.executeQuery(sql);
+            rs.next();
+            discount.setDiscountID(rs.getInt("AccountID"));
+
+            // close connection
+            conn.close();
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     /** RETRIEVAL STATEMENTS **/
 
     // Retrieve a customer accounts from the database (for display)

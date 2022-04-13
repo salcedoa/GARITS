@@ -4,7 +4,9 @@ public class Discounts {
 
 private String discountType;
 
-    public String getDiscountType() { return discountType; }
+public String getDiscountType() { return discountType; }
+
+    public int getCustomerID() { return discountID; }
 
     public String getVariableBusinessType() { return variableBusinessType; }
 
@@ -16,6 +18,8 @@ private String discountType;
 
     private String variableBusinessType;
 
+    public void setDiscountID(int discountID) { this.discountID = discountID; }
+
     public void setDiscountType(String discountType) { this.discountType = discountType; }
 
     public void setVariableBusinessType(String variableBusinessType) { this.variableBusinessType = variableBusinessType; }
@@ -26,7 +30,7 @@ private String discountType;
 
     public void setFlexibleHighRange(int flexibleHighRange) { this.flexibleHighRange = flexibleHighRange; }
 
-    private int discountPercentage,flexibleLowRange,flexibleHighRange;
+    private int discountPercentage,flexibleLowRange,flexibleHighRange,discountID;
 
 
 
