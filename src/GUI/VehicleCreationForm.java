@@ -86,5 +86,26 @@ public class VehicleCreationForm extends JPanel {
         add(model);
         model.setBounds(xPos,325,200,20);
 
+        JButton saveButton = builder.createSaveButton(this, 450,480);
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                vehicle = new Vehicle();
+                vehicle.setNumberPlate(numberPlate.getText());
+                vehicle.setColour(colour.getText());
+                vehicle.setLastMoT(lastMoT.getText());
+                vehicle.setMake(make.getText());
+                vehicle.setModel(model.getText());
+
+//                if (SQLHelper.insertVehicle(vehicle)){
+//                    JOptionPane.showMessageDialog(VehicleCreationForm.this,"Added new vehicle to database");
+//                    clearTextFields();
+//                } else{
+//                    JOptionPane.showMessageDialog(VehicleCreationForm.this,"Error: Fields not entered correctly or required fields missing");
+//                }
+            }
+        });
+
     }
 }

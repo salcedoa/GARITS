@@ -78,6 +78,7 @@ public class GARITS {
                 containerPanel.add("add part", new AddPart(this));
                 containerPanel.add("view customer accounts", new CustomerAccountsView(this));
                 containerPanel.add("discount form",new DiscountForm(this));
+                containerPanel.add("vehicle creation form",new VehicleCreationForm(this));
                 cl.show(containerPanel, "franchisee menu");
                 break;
             case "Foreman":
@@ -89,6 +90,7 @@ public class GARITS {
                 containerPanel.add("create new job",new JobSheet(this));
                 containerPanel.add("stock control system",new StockControlMenu(this));
                 containerPanel.add("jobs view", new JobsView(this));
+                containerPanel.add("create invoice",new InvoiceCreationForm(this));
                 cl.show(containerPanel, "receptionist menu");
                 break;
             case "Mechanic":
@@ -103,7 +105,7 @@ public class GARITS {
         //new LoginPage();
 
         // TESTS
-        String role = "Franchisee";
+        String role = "Receptionist";
         new GARITS(role);
     }
 }

@@ -120,7 +120,7 @@ public class CustomerAccountsView extends JPanel {
                     JOptionPane.showMessageDialog(CustomerAccountsView.this, "No record selected");
                 } else {
                     int id = Integer.parseInt(table.getValueAt(row,0).toString());
-                    // TODO: show 'add vehicle' form
+                    cl.show(containerPanel,"vehicle creation form");
                 }
             }
         });

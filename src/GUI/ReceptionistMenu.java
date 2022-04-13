@@ -60,7 +60,7 @@ public class ReceptionistMenu extends JPanel {
         createInvoiceButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: Specify spare parts (GUI creator)
+                cl.show(containerPanel,("create invoice"));
             }
         });
     }
