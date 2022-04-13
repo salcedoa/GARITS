@@ -75,6 +75,40 @@ public class SQLHelper {
     }
 
     // Insert vehicle record into the database
+    public boolean insertVehicle(Vehicle vehicle) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(dbURL,"root",dbPassword);
+            String sql = "INSERT INTO vehicles" +
+                    "(PlateNumber, Colour,LastMoT, Make, Model, CustomerID) " +
+                    "VALUES (?,?,?,?,?,?)";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            String [] vehicleFieldList = {vehicle.getNumberPlate(), vehicle.getColour(), vehicle.getLastMoT(), vehicle.getMake(),
+                                            vehicle.getModel()};
+
+            for (int i = 0; i != vehicleFieldList.length; i++) {
+                if (vehicleFieldList[i].equals("")) {
+                    // i begins from 0 but the parameter indices in the prepared statement begin from 1
+                    statement.setNString(i+1,null);
+                } else {
+                    statement.setNString(i+1,vehicleFieldList[i]);
+                }
+            }
+            statement.setInt(6,vehicle.getCustomerID());
+
+            try {
+                statement.executeUpdate();
+            } catch (SQLIntegrityConstraintViolationException e){
+                return false;
+            }
+
+            conn.close();
+            return true;
+        } catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     // Insert Job into database
     public boolean insertJob(Job job) {
