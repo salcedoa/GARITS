@@ -7,8 +7,8 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class SQLHelper {
-    // usually 82.0.184.217:3306
-    private final String dbAddress = "localhost:3306";
+    // usually localhost:3306
+    private final String dbAddress = "82.0.184.217:3306 ";
     private final String dbPassword = "Lancaster6";
     private final String dbURL = "jdbc:mysql://"+dbAddress+"/GARITS_DB?allowPublicKeyRetrieval=true&useSSL=false";
 
