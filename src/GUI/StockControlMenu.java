@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StockControlMenu extends JPanel {
+    private JPanel containerPanel;
+    private CardLayout cl;
     private GUICreator builder;
 
     private static final JButton checkStockButton = new JButton("CHECK STOCK");
@@ -18,6 +20,10 @@ public class StockControlMenu extends JPanel {
 
     public StockControlMenu(GARITS garits){
         builder = garits.getBuilder();
+
+        containerPanel = garits.getContainerPanel();
+        cl = garits.getCl();
+;
 
         // setting up a box layout that aligns all the components vertically
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -50,8 +56,7 @@ public class StockControlMenu extends JPanel {
         manageStockButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: View job progress
-            }
+                cl.show(containerPanel,"manage stock");}
         });
 
     }
