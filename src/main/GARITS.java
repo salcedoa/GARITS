@@ -79,10 +79,13 @@ public class GARITS {
                 containerPanel.add("view customer accounts", new CustomerAccountsView(this));
                 containerPanel.add("discount form",new DiscountForm(this));
                 containerPanel.add("vehicle creation form",new VehicleCreationForm(this));
+                containerPanel.add("create new job",new JobSheet(this));
                 cl.show(containerPanel, "franchisee menu");
                 break;
             case "Foreman":
                 containerPanel.add("foreman menu", new ForepersonMenu(this));
+                containerPanel.add("create new job",new JobSheet(this));
+                containerPanel.add("receptionist menu", new ReceptionistMenu(this));
                 cl.show(containerPanel, "foreman menu");
                 break;
             case "Receptionist":
@@ -91,6 +94,7 @@ public class GARITS {
                 containerPanel.add("stock control system",new StockControlMenu(this));
                 containerPanel.add("jobs view", new JobsView(this));
                 containerPanel.add("create invoice",new InvoiceCreationForm(this));
+                containerPanel.add("customer creation form", new CustomerAccountCreation(this));
                 cl.show(containerPanel, "receptionist menu");
                 break;
             case "Mechanic":

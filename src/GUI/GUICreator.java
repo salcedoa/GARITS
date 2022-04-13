@@ -60,7 +60,6 @@ public class GUICreator {
         newJobsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: TAKE IN NEW JOB
                 cl.show(containerPanel,"create new job");
             }
         });
@@ -138,7 +137,7 @@ public class GUICreator {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: CREATE CUSTOMER RECORD MENU
+                cl.show(containerPanel,"customer creation form");
             }
         });
 

@@ -12,7 +12,7 @@ public class ReceptionistMenu extends JPanel {
     private CardLayout cl;
     private GUICreator builder;
 
-    private static final JButton viewJobProgressButton = new JButton("VIEW JOB PROGRESS");
+    private static final JButton viewJobsButton = new JButton("VIEW JOBS");
     private static final JButton createInvoiceButton = new JButton("CREATE INVOICE");
 
     private int buttonWidth = 240;
@@ -32,7 +32,7 @@ public class ReceptionistMenu extends JPanel {
         this.add(Box.createRigidArea(new Dimension(0, 5)));
         builder.createCustomerAccountButton(this, buttonWidth);
         this.add(Box.createRigidArea(new Dimension(0, 5)));
-        this.add(viewJobProgressButton);
+        this.add(viewJobsButton);
         this.add(Box.createRigidArea(new Dimension(0, 5)));
         this.add(createInvoiceButton);
         this.add(Box.createRigidArea(new Dimension(0, 5)));
@@ -45,12 +45,14 @@ public class ReceptionistMenu extends JPanel {
         createInvoiceButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         createInvoiceButton.setMaximumSize(new Dimension(buttonWidth,buttonHeight));
 
-        viewJobProgressButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        viewJobProgressButton.setMaximumSize(new Dimension(buttonWidth,buttonHeight));
+        viewJobsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        viewJobsButton.setMaximumSize(new Dimension(buttonWidth,buttonHeight));
 
         // BUTTON FUNCTIONS
 
-        viewJobProgressButton.addActionListener(new ActionListener() {
+
+
+        viewJobsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cl.show(containerPanel,"jobs view");
