@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ReceptionistMenu extends JPanel {
+    private JPanel containerPanel;
+    private CardLayout cl;
     private GUICreator builder;
 
     private static final JButton viewJobProgressButton = new JButton("VIEW JOB PROGRESS");
@@ -17,6 +19,8 @@ public class ReceptionistMenu extends JPanel {
     private int buttonHeight = 50;
 
     public ReceptionistMenu(GARITS garits) {
+        containerPanel = garits.getContainerPanel();
+        cl = garits.getCl();
         builder = garits.getBuilder();;
 
         // setting up a box layout that aligns all the components vertically
@@ -49,7 +53,7 @@ public class ReceptionistMenu extends JPanel {
         viewJobProgressButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: View job progress
+                cl.show(containerPanel,"jobs view");
             }
         });
 

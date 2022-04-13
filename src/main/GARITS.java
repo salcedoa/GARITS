@@ -88,6 +88,7 @@ public class GARITS {
                 containerPanel.add("receptionist menu", new ReceptionistMenu(this));
                 containerPanel.add("create new job",new JobSheet(this));
                 containerPanel.add("stock control system",new StockControlMenu(this));
+                containerPanel.add("jobs view", new JobsView(this));
                 cl.show(containerPanel, "receptionist menu");
                 break;
             case "Mechanic":
