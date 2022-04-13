@@ -98,12 +98,12 @@ public class VehicleCreationForm extends JPanel {
                 vehicle.setMake(make.getText());
                 vehicle.setModel(model.getText());
 
-//                if (SQLHelper.insertVehicle(vehicle)){
-//                    JOptionPane.showMessageDialog(VehicleCreationForm.this,"Added new vehicle to database");
-//                    clearTextFields();
-//                } else{
-//                    JOptionPane.showMessageDialog(VehicleCreationForm.this,"Error: Fields not entered correctly or required fields missing");
-//                }
+                if (SQLHelper.insertVehicle(vehicle)){
+                    JOptionPane.showMessageDialog(VehicleCreationForm.this,"Added new vehicle to database");
+                    clearTextFields();
+                } else{
+                    JOptionPane.showMessageDialog(VehicleCreationForm.this,"Error: Fields not entered correctly or required fields missing");
+                }
             }
         });
 

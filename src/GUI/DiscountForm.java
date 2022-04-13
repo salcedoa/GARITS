@@ -129,14 +129,14 @@ public class DiscountForm extends JPanel {
                     }
                 }
 
-                //if (sqlHelper.insertDiscount(discount)) {
-                //JOptionPane.showMessageDialog(DiscountForm.this, "Added New Discount To Database");
+                if (sqlHelper.insertDiscount(discount)) {
+                JOptionPane.showMessageDialog(DiscountForm.this, "Added New Discount To Database");
                 clearTextFields();
-                //} else{
-                //JOptionPane.showMessageDialog(DiscountForm.this,"Error: Fields not entered correctly or required fields missing");
-                //}
-                //}
-            }
-        });
+                } else{
+                JOptionPane.showMessageDialog(DiscountForm.this,"Error: Fields not entered correctly or required fields missing");
+                }
+                }
+            });
+        }
     }
-}
+
